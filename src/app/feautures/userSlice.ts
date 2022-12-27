@@ -1,14 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type IUser = {
-  email: string | null,
-  password: string | null,
-  id: number | null,
-}
+import { IUser } from "../../types/types";
 
 const initialState: IUser = {
   email: null,
-  password: null,
+  accessToken: null,
   id: null,
 }
 
@@ -17,9 +12,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<IUser>) {
-      const {email, password, id} = action.payload;
+      const {email, accessToken, id} = action.payload;
       if (email) state.email = email;
-      if (password) state.password = password;
+      if (accessToken) state.accessToken = accessToken;
       if (id) state.id = id;
     }
   } 

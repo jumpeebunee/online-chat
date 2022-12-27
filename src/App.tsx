@@ -1,4 +1,3 @@
-import AppAuth from "./components/AppAuth"
 import AppNavigation from "./components/AppNavigation"
 
 const App = () => {
