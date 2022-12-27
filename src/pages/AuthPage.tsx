@@ -12,6 +12,7 @@ const AuthPage = () => {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log(user)
     })
     .catch((error) => {
       const errorCode = error.code;
