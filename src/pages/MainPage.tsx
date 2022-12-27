@@ -1,8 +1,13 @@
-import React from 'react'
+import { Navigate } from "react-router-dom";
 
 const MainPage = () => {
+
+  const user = true;
+
   return (
-    <div>MainPage</div>
+    <div>
+      {user && <Navigate to='/auth'/>}
+    </div>
   )
 }
 
