@@ -1,0 +1,17 @@
+.signin__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.signin__heading {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.signin__form {
+  width: 100%;
+}

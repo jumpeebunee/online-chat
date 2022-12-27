@@ -1,6 +1,10 @@
+import AppAuth from "./components/AppAuth"
+
 const App = () => {
   return (
-    <h1>App</h1>
+    <main className="main">
+      <AppAuth/>
+    </main>
   )
 }
 
