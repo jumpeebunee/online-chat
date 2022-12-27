@@ -1,9 +1,10 @@
 import AppAuth from "./components/AppAuth"
+import AppNavigation from "./components/AppNavigation"
 
 const App = () => {
   return (
     <main className="main">
-      <AppAuth/>
+      <AppNavigation/>
     </main>
   )
 }
