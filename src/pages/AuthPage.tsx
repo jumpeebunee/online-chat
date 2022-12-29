@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setUser } from '../app/feautures/userSlice';
 import { IUser } from '../types/types';
 import AppAuthSignup from '../components/AppAuthSignup';
@@ -14,6 +14,8 @@ const AuthPage = () => {
 
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [userInfo, setUserInfo] = useState({firstName: '', lastName: ''});
+  const [registerUser, setRegisterUser] = useState(false);
 
   const createNewUser = async () => {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
@@ -25,7 +27,14 @@ const AuthPage = () => {
         accessToken: user.refreshToken,
       }
       dispatch(setUser(userData));
-      navigate('/');
+      setRegisterUser(true);
+      // navigate('/');
+    }).then(() => {
+      if (auth.currentUser) {
+        updateProfile(auth.currentUser, {
+          displayName: `${userInfo.firstName.trim()} ${userInfo.lastName.trim()}`,
+        })
+      }
     })
     .catch((error) => { 
       // const errorCode = error.code;
@@ -41,6 +50,9 @@ const AuthPage = () => {
         userEmail={userEmail}
         userPassword={userPassword}
         createNewUser={createNewUser}
+        registerUser={registerUser}
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
       />
     </div>
   )
