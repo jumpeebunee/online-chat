@@ -34,6 +34,7 @@ const AppAuthSignin:FC<AppAuthSigninProps> = ({setUserEmail, setUserPassword, us
             className='input'
             type="text"
             placeholder='Почта'
+            data-testid="email-input"
           />
           <input onChange={(e) => setUserPassword(e.target.value)}
             value={userPassword}

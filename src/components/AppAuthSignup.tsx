@@ -32,7 +32,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, u
             onChange={(e) => setUserEmail(e.target.value)}
             value={userEmail}
             className='input'
-            type="text"
+            type="email"
             placeholder='Почта'
           />
           <input 
