@@ -20,13 +20,13 @@ const App = () => {
           accessToken: user.uid,
           id:  user.refreshToken,
         }
-        if (location.pathname === '/login' || location.pathname === '/auth') {
-          navigate('/')
-        } 
+        navigate('/')
         dispatch(setUser(data));
-      } 
+      } else {
+        navigate('/login');
+      }
     });
-  },[navigate])
+  }, [])
 
   return (
     <main className="main">

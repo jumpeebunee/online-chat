@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/components/AppAuthSign.scss';
 
@@ -8,16 +8,19 @@ interface AppAuthSignupProps {
   userEmail: string,
   userPassword: string,
   createNewUser: Function,
-  registerUser: Boolean,
   userInfo: {firstName: string, lastName: string}
   setUserInfo: Function,
+  userData: {email: string, password: string},
+  setUserData: Function,
 }
 
-const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, userEmail, userPassword, createNewUser, registerUser, userInfo, setUserInfo}) => {
+const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, userEmail, userPassword, createNewUser, userInfo, setUserInfo, userData, setUserData}) => {
+
+  const [isErrors, setIsErrors] = useState({firstName: false, lastName: false});
 
   const createUser = () => {
     const isValid = validateUserInfo();
-    if (userEmail && userPassword && isValid) {
+    if (userData.email && userData.password && isValid) {
       createNewUser();
     }
   }
@@ -25,6 +28,8 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, u
   const validateUserInfo = () => {
     const isFirstName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userInfo.firstName.trim());
     const isLastName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userInfo.lastName.trim());
+
+    setIsErrors({firstName: !isFirstName, lastName: !isLastName});
     return isFirstName && isLastName;
   }
 
@@ -39,29 +44,35 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, u
         </div>
         <h2 className="login__heading">Регистрация Жигаловка</h2>
         <form className='login__form'>
-          <input
-            className='input'
-            type="text"
-            placeholder='Имя'
-            onChange={(e) => setUserInfo({...userInfo, firstName: e.target.value})}
-          />
+          <div>
+            <input
+              className={isErrors.firstName ? 'input input_error' : 'input'}
+              type="text"
+              placeholder='Имя'
+              onChange={(e) => setUserInfo({...userInfo, firstName: e.target.value})}
+            />
+            {isErrors.firstName && <label className='login__label'>Введите корректное имя</label>}
+          </div>
+          <div>
+            <input 
+               className={isErrors.lastName ? 'input input_error' : 'input'}
+              type="text"
+              placeholder='Фамилия'
+              onChange={(e) => setUserInfo({...userInfo, lastName: e.target.value})}
+            />
+            {isErrors.lastName && <label className='login__label'>Введите корректную фамилию</label>}
+          </div>
           <input 
-            className='input'
-            type="text"
-            placeholder='Фамилия'
-            onChange={(e) => setUserInfo({...userInfo, lastName: e.target.value})}
-          />
-          <input 
-            onChange={(e) => setUserEmail(e.target.value)}
-            value={userEmail}
+            onChange={(e) => setUserData({...userData, email: e.target.value})}
+            value={userData.email}
             className='input'
             type="email"
             placeholder='Почта'
           />
           <input 
-            onChange={(e) => setUserPassword(e.target.value)}
+            onChange={(e) =>  setUserData({...userData, password: e.target.value})}
             autoComplete="true"
-            value={userPassword}
+            value={userData.password}
             className='input'
             type="password"
             placeholder='Пароль'

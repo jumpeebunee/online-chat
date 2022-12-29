@@ -21,6 +21,11 @@
   background-color: #333333;
 }
 
+.input_error {
+  background-color: rgba(241, 88, 87, 0.4);
+  border: 1px solid #F15857;
+}
+
 .container {
   max-width: 1092px;
   margin-left: auto;
