@@ -9,7 +9,7 @@ const MainPage = () => {
     <div>
       {isAuth
       ? <h1>Добро пожаловать!</h1>
-      : <Navigate to='/auth'/>
+      : <Navigate to='/login'/>
       }
     </div>
   )

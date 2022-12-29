@@ -1,0 +1,44 @@
+.app-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.login__heading {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.login__form {
+  width: 100%;
+}
+
+.login__card {
+  width: 100%;
+  max-width: 320px;
+  padding: 32px 24px;
+  background-color: #222222;
+  border-radius: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login__container {
+  padding-top: 96px;
+}
+
+.login__or {
+  font-size: 13px;
+  color: #656565;
+}

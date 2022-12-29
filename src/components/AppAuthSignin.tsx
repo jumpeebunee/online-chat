@@ -1,19 +1,52 @@
-import '../styles/components/appAuthSignin.scss';
-import '../styles/pages/loginPage.scss';
+import { FC, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/components/AppAuthSign.scss';
 
-const AppAuthSignin = () => {
+interface AppAuthSigninProps {
+  setUserEmail: Function,
+  setUserPassword: Function,
+  userEmail: string,
+  userPassword: string,
+  createNewUser: Function,
+}
+
+const AppAuthSignin:FC<AppAuthSigninProps> = ({setUserEmail, setUserPassword, userEmail, userPassword, createNewUser}) => {
+
+  const loginToProfile = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    createNewUser();
+  }
+
   return (
     <div className='login__card'>
-      <div className='signin__header'>
-        <div className="signin__logo">
-          <svg className="signin__logo-icon" width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M32.0205 0H16.9795C3.25381 0 0 3.1874 0 16.633V31.367C0 44.8126 3.25381 48 16.9795 48H32.0205C45.7462 48 49 44.8126 49 31.367V16.633C49 3.1874 45.714 0 32.0205 0ZM39.5571 34.2409H36.0001C34.6526 34.2409 34.2377 33.194 31.8138 30.788C29.7084 28.7886 28.7759 28.5231 28.2568 28.5231C27.5234 28.5231 27.3151 28.7256 27.3151 29.7111V32.8595C27.3151 33.7039 27.0441 34.2109 24.7626 34.2109C20.9897 34.2109 16.8034 31.976 13.8681 27.8121C9.44139 21.7103 8.23021 17.14 8.23021 16.195C8.23021 15.6865 8.43692 15.211 9.43374 15.211H12.9984C13.9003 15.211 14.2432 15.6175 14.5939 16.5625C16.3563 21.5468 19.2916 25.9132 20.5028 25.9132C20.9499 25.9132 21.1566 25.7107 21.1566 24.5932V19.4454C21.0203 17.071 19.7449 16.867 19.7449 16.024C19.7449 15.6175 20.0878 15.211 20.6375 15.211H26.2433C27.0012 15.211 27.2799 15.6175 27.2799 16.492V23.4368C27.2799 24.1867 27.6229 24.4522 27.8296 24.4522C28.2767 24.4522 28.6595 24.1867 29.4879 23.3738C32.0481 20.5614 33.8824 16.225 33.8824 16.225C34.1213 15.7165 34.5363 15.241 35.4381 15.241H39.0028C40.0716 15.241 40.3104 15.7795 40.0716 16.5295C39.6245 18.5604 35.2621 24.5917 35.2621 24.5917C34.8869 25.2007 34.743 25.4662 35.2621 26.1457C35.6449 26.6542 36.8897 27.7086 37.7181 28.6536C39.2416 30.3486 40.413 31.7705 40.7254 32.7545C41.076 33.7309 40.5585 34.2394 39.5525 34.2394L39.5571 34.2409Z" fill="white"/>
-          </svg>
+      <div className='login__header'>
+        <div className="login__logo">
+        <svg className="login__logo-icon" width="48" height="49" viewBox="0 0 48 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="48" height="49" rx="10" fill="white"/>
+          <path d="M9.15625 33V30.7969L16.9297 20.1406H9.16406V17H21.8203V19.2031L14.0469 29.8594H21.8125V33H9.15625ZM24.1855 33V17H28.0527V23.4219H34.3574V17H38.2168V33H34.3574V26.5703H28.0527V33H24.1855Z" fill="#222222"/>
+        </svg>
         </div>
-        <h2 className="signin__heading">Вход Вконтакте</h2>
-        <form className='signin__form'>
-          <input className='input' type="text" placeholder='Почта'/>
+        <h2 className="login__heading">Вход Жигаловка</h2>
+        <form onSubmit={(e) => loginToProfile(e)} className='login__form'>
+          <input
+            onChange={(e) => setUserEmail(e.target.value)}
+            value={userEmail} 
+            className='input'
+            type="text"
+            placeholder='Почта'
+          />
+          <input onChange={(e) => setUserPassword(e.target.value)}
+            value={userPassword}
+            style={{marginTop: '10px'}}
+            className='input'
+            type="password"
+            placeholder='Пароль'
+            autoComplete="true"
+          />
         </form>
+        <button onClick={() => createNewUser()} className='btn login__btn'>Войти</button>
+        <span className='login__or'>или</span>
+        <Link to='/auth' className='btn register-btn'>Зарегистрироваться</Link>
       </div>
     </div>
   )

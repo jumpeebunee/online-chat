@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../app/feautures/userSlice';
 import { IUser } from '../types/types';
+import AppAuthSignup from '../components/AppAuthSignup';
 
 const AuthPage = () => {
 
@@ -33,11 +34,14 @@ const AuthPage = () => {
   }
 
   return (
-    <div>
-      <input onChange={(e) => setUserEmail(e.target.value)} value={userEmail} className='input' placeholder='Введите вашу почту'/>
-      <input onChange={(e) => setUserPassword(e.target.value)} value={userPassword} className='input' placeholder='Введите пароль'/>
-      <button onClick={createNewUser}>Зарегистрироваться</button>
-      <Link to="/login">Войти</Link>
+    <div className='container login__container'>
+      <AppAuthSignup
+        setUserEmail={setUserEmail}
+        setUserPassword={setUserPassword}
+        userEmail={userEmail}
+        userPassword={userPassword}
+        createNewUser={createNewUser}
+      />
     </div>
   )
 }
