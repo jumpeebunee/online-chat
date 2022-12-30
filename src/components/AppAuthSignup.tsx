@@ -1,36 +1,38 @@
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/components/AppAuthSign.scss';
-
+import { IUserData } from '../types/types';
+import AppAuthInput from './AppAuthInput';
 interface AppAuthSignupProps {
-  setUserEmail: Function,
-  setUserPassword: Function,
-  userEmail: string,
-  userPassword: string,
   createNewUser: Function,
-  userInfo: {firstName: string, lastName: string}
-  setUserInfo: Function,
-  userData: {email: string, password: string},
+  userData: IUserData,
   setUserData: Function,
 }
 
-const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, userEmail, userPassword, createNewUser, userInfo, setUserInfo, userData, setUserData}) => {
+type IErrors = {
+  firstName: boolean,
+  lastName: boolean,
+  email: boolean,
+  password: boolean,
+}
 
-  const [isErrors, setIsErrors] = useState({firstName: false, lastName: false});
+const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUserData,}) => {
+
+  const [isErrors, setIsErrors] = useState<IErrors>({firstName: false, lastName: false, email: false, password: false});
 
   const createUser = () => {
     const isValid = validateUserInfo();
-    if (userData.email && userData.password && isValid) {
-      createNewUser();
-    }
+    if (isValid) createNewUser();
   }
 
   const validateUserInfo = () => {
-    const isFirstName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userInfo.firstName.trim());
-    const isLastName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userInfo.lastName.trim());
+    const isFirstName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userData.firstName.trim());
+    const isLastName = /^[а-яА-ЯёЁa-zA-Z]+$/.test(userData.lastName.trim());
+    const isEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]{2,3}$/.test((userData.email.trim()));
+    const isPassword = userData.password.length >= 6;
 
-    setIsErrors({firstName: !isFirstName, lastName: !isLastName});
-    return isFirstName && isLastName;
+    setIsErrors({firstName: !isFirstName, lastName: !isLastName, email: !isEmail, password: !isPassword});
+    return isFirstName && isLastName && isEmail && isPassword;
   }
 
   return (
@@ -44,38 +46,37 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({setUserEmail, setUserPassword, u
         </div>
         <h2 className="login__heading">Регистрация Жигаловка</h2>
         <form className='login__form'>
-          <div>
-            <input
-              className={isErrors.firstName ? 'input input_error' : 'input'}
-              type="text"
-              placeholder='Имя'
-              onChange={(e) => setUserInfo({...userInfo, firstName: e.target.value})}
-            />
-            {isErrors.firstName && <label className='login__label'>Введите корректное имя</label>}
-          </div>
-          <div>
-            <input 
-               className={isErrors.lastName ? 'input input_error' : 'input'}
-              type="text"
-              placeholder='Фамилия'
-              onChange={(e) => setUserInfo({...userInfo, lastName: e.target.value})}
-            />
-            {isErrors.lastName && <label className='login__label'>Введите корректную фамилию</label>}
-          </div>
-          <input 
-            onChange={(e) => setUserData({...userData, email: e.target.value})}
-            value={userData.email}
-            className='input'
-            type="email"
-            placeholder='Почта'
+          <AppAuthInput
+            title={'Имя'}
+            isError={isErrors.firstName}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'firstName'}
+            errorMessage={'Введите корректное имя'}
           />
-          <input 
-            onChange={(e) =>  setUserData({...userData, password: e.target.value})}
-            autoComplete="true"
-            value={userData.password}
-            className='input'
-            type="password"
-            placeholder='Пароль'
+          <AppAuthInput
+            title={'Фамилия'}
+            isError={isErrors.lastName}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'lastName'}
+            errorMessage={'Введите корректную фамилию'}
+          />
+          <AppAuthInput
+            title={'Почта'}
+            isError={isErrors.email}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'email'}
+            errorMessage={'Введите корректную почту'}
+          />
+          <AppAuthInput
+            title={'Пароль'}
+            isError={isErrors.password}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'password'}
+            errorMessage={'Введите корректный пароль'}
           />
         </form>
         <button onClick={() => createUser()} className='btn login__btn'>Зарегистрироваться</button>

@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setUser } from './app/feautures/userSlice';
@@ -11,8 +11,11 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const auth = getAuth();
+    setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const data = {
@@ -25,13 +28,22 @@ const App = () => {
       } else {
         navigate('/login');
       }
+      setIsLoading(false);
     });
   }, [])
 
   return (
-    <main className="main">
-      <AppNavigation/>
-    </main>
+    <div>
+      {!isLoading
+      ?
+      <main className="main">
+        <AppNavigation/>
+      </main>
+      : 
+      <main className="main">
+      </main>
+      }
+    </div>
   )
 }
 

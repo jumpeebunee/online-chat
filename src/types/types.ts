@@ -3,3 +3,10 @@ export type IUser = {
   accessToken: string | null,
   id: string | null,
 }
+
+export type IUserData = {
+  firstName: string,
+  lastName: string, 
+  email: string, 
+  password: string
+}
