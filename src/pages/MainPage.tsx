@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/use-auth";
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
-import { getUserName } from '../app/feautures/userSlice';
+import { getUserName, getUserImage } from '../app/feautures/userSlice';
 import { collection, addDoc, onSnapshot  } from "firebase/firestore"; 
 import { db } from '../firebase';
 
@@ -20,7 +20,9 @@ type IPost = {
 const MainPage = () => {
 
   const { isAuth } = useAuth();
+
   const userName = useSelector(getUserName);
+  const userImage = useSelector(getUserImage);
 
   const [postBody, setPostBody] = useState('');
   const [posts, setPosts] = useState<IPost[]>([]);
@@ -40,10 +42,10 @@ const MainPage = () => {
 
   const createNewPost = async () => {
     try {
-      const docRef = await addDoc(collection(db, "posts"), {
+      await addDoc(collection(db, "posts"), {
         id: nanoid(),
         name: userName,
-        img: 'https://picsum.photos/id/4/200/200',
+        img: userImage,
         date: Date.now().toString(),
         body: postBody,
       });

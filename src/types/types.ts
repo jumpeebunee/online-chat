@@ -3,6 +3,7 @@ export type IUser = {
   accessToken: string | null,
   name: string | null,
   id: string | null,
+  photoURL: string | null,
 }
 
 export type IUserData = {

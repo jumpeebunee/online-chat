@@ -24,6 +24,7 @@ const LoginPage = () => {
         id: user.uid,
         name: user.displayName,
         accessToken: user.refreshToken,
+        photoURL: user.photoURL,
       }
       dispatch(setUser(userData));
       navigate('/');

@@ -22,6 +22,7 @@ const App = () => {
           accessToken: user.uid,
           name: user.displayName,
           id:  user.refreshToken,
+          photoURL: user.photoURL,
         }
         navigate('/')
         dispatch(setUser(data));
