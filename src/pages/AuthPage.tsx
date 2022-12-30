@@ -13,16 +13,18 @@ const AuthPage = () => {
   const [userData, setUserData] = useState<IUserData>({firstName: '', lastName: '', email: '', password: ''})
 
   const createNewUser = async () => {
-    console.log('Оиправил')
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
     .then((userCredential) => {
       const user = userCredential.user;
-      const userData: IUser = {
-        email: user.email,
-        id: user.uid,
-        accessToken: user.refreshToken,
+      if (user) {
+        const userInfo: IUser = {
+          email: user.email,
+          id: user.uid,
+          name: `${userData.firstName.trim()} ${userData.lastName.trim()}`,
+          accessToken: user.refreshToken,
+        }
+        dispatch(setUser(userInfo));
       }
-      dispatch(setUser(userData));
     }).then(() => {
       if (auth.currentUser) {
         updateProfile(auth.currentUser, {
@@ -31,7 +33,8 @@ const AuthPage = () => {
       }
     })
     .catch((error) => { 
-      // const errorMessage = error.message;
+      const errorMessage = error.message;
+      console.log(errorMessage);
     });
   }
 

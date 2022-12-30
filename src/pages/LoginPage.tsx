@@ -22,6 +22,7 @@ const LoginPage = () => {
       const userData: IUser = {
         email: user.email,
         id: user.uid,
+        name: user.displayName,
         accessToken: user.refreshToken,
       }
       dispatch(setUser(userData));

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setUser } from './app/feautures/userSlice';
 import AppNavigation from "./components/AppNavigation"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -9,7 +9,6 @@ const App = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,6 +20,7 @@ const App = () => {
         const data = {
           email: user.email,
           accessToken: user.uid,
+          name: user.displayName,
           id:  user.refreshToken,
         }
         navigate('/')

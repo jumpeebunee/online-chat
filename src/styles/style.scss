@@ -27,7 +27,7 @@
 }
 
 .container {
-  max-width: 1092px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -46,4 +46,12 @@
 .register-btn {
   color: #fff;
   background-color: #4bb34b;
+}
+
+.card {
+  width: 100%;
+  padding: 25px 30px;
+  background-color: #222222;
+  border: 1px solid #828282;
+  border-radius: 20px;
 }

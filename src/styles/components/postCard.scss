@@ -1,0 +1,46 @@
+.post-card__list {
+  max-width: 660px;
+  width: 100%;
+}
+
+.post-card__item {
+  width: 100%;
+  padding: 25px 30px;
+  background-color: #222222;
+  border: 1px solid #828282;
+  border-radius: 20px;
+}
+
+.post-card__header {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
+}
+
+.post-card__body {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 160%;
+}
+
+.post-card__header-description {
+  margin-left: 15px;
+
+  h5 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  span {
+    display: block;
+    margin-top: 3px;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}

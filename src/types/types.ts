@@ -1,6 +1,7 @@
 export type IUser = {
   email: string | null,
   accessToken: string | null,
+  name: string | null,
   id: string | null,
 }
 
