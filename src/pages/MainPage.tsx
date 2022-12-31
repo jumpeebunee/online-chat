@@ -1,6 +1,6 @@
 import '../styles/pages/mainPage.scss';
 import { useEffect, useState } from 'react';
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { IPost } from '../types/types';
 import { useAuth } from "../hooks/use-auth";
 import { nanoid } from '@reduxjs/toolkit';

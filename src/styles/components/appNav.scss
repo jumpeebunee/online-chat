@@ -12,7 +12,7 @@
   max-width: 150px;
 }
 
-.app-nav__m {
+.app-nav__m-content {
   display: none;
   gap: 20px;
 }
@@ -30,11 +30,11 @@
     line-height: 19px;
     background: transparent;
   }
+}
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
+.app-nav__item-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .app-nav__item_active {
@@ -49,11 +49,11 @@
     max-width: 0;
   }
 
-  .app-nav__content{
+  .app-nav__content {
    display: none;
   }
 
-  .app-nav__m {
+  .app-nav__m-content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,11 +85,12 @@
       font-size: 3.56vw;
       line-height: 4.22vw;
     }
-  
-    svg {
-      width: 3.56vw;
-      height: 3.56vw;
-    }
+  }
+
+  .app-nav__item-icon {
+    display: block;
+    width: 3.56vw;
+    height: 3.56vw;
   }
 
   .app-nav__m {
