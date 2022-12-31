@@ -1,4 +1,4 @@
-import '../../styles/components/AppAuthSign.scss';
+import '../../styles/components/appAuthSign.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppAuthInput from '../AppAuthInput';

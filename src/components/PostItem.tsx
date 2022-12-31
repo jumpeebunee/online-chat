@@ -1,3 +1,4 @@
+import '../styles/components/postItem.scss';
 import { FC } from "react"
 import { IPost } from "../types/types"
 

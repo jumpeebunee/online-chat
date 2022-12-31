@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setUser } from './app/feautures/userSlice';
 import AppNavigation from "./components/AppNavigation"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import AppHeader from "./components/AppHeader";
 
 const App = () => {
 
@@ -37,9 +38,12 @@ const App = () => {
     <div>
       {!isLoading
       ?
-      <main className="main">
-        <AppNavigation/>
-      </main>
+      <div>
+        <AppHeader/>
+        <main className="main">
+          <AppNavigation/>
+        </main>
+      </div>
       : 
       <main className="main">
       </main>

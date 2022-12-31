@@ -1,5 +1,4 @@
 import '../styles/pages/mainPage.scss';
-import '../styles/components/postCard.scss';
 import { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { IPost } from '../types/types';
@@ -25,7 +24,7 @@ const MainPage = () => {
     const unsub = onSnapshot(collection(db, "posts"), doc => {
         const posts: IPost[] = [];
         doc.forEach((d: any) => {
-          posts.unshift(d.data())
+          posts.push(d.data())
         })
         setPosts([...posts]);
         return () => {

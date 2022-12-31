@@ -16,7 +16,6 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action: PayloadAction<IUser>) {
       const {email, photoURL, name, accessToken, id} = action.payload;
-      localStorage.setItem('userInfo', JSON.stringify(action.payload));
       if (email) state.email = email;
       if (accessToken) state.accessToken = accessToken;
       if (name) state.name = name;

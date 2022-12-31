@@ -1,3 +1,4 @@
+import '../styles/components/postCreate.scss';
 import {FC, useState} from 'react'
 
 interface PostCreateProps {
