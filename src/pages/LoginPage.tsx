@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../app/feautures/userSlice';
 import { IUser } from '../types/types';
-import AppAuthSignin from '../components/AppAuthSignin';
+import AppAuthSignin from '../components/AppAuthSignIn/AppAuthSignin';
 
 const LoginPage = () => {
 

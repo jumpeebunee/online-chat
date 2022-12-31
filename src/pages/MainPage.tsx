@@ -2,20 +2,15 @@ import '../styles/pages/mainPage.scss';
 import '../styles/components/postCard.scss';
 import { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
+import { IPost } from '../types/types';
 import { useAuth } from "../hooks/use-auth";
 import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { getUserName, getUserImage } from '../app/feautures/userSlice';
 import { collection, addDoc, onSnapshot  } from "firebase/firestore"; 
 import { db } from '../firebase';
-
-type IPost = {
-  id: string,
-  name: string,
-  img: string,
-  date: string,
-  body: string,
-}
+import PostsList from '../components/PostsList';
+import PostCreate from '../components/PostCreate';
 
 const MainPage = () => {
 
@@ -24,14 +19,13 @@ const MainPage = () => {
   const userName = useSelector(getUserName);
   const userImage = useSelector(getUserImage);
 
-  const [postBody, setPostBody] = useState('');
   const [posts, setPosts] = useState<IPost[]>([]);
   
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "posts"), doc => {
         const posts: IPost[] = [];
         doc.forEach((d: any) => {
-          posts.push(d.data());
+          posts.unshift(d.data())
         })
         setPosts([...posts]);
         return () => {
@@ -40,7 +34,7 @@ const MainPage = () => {
       })
   },[]);
 
-  const createNewPost = async () => {
+  const createNewPost = async (postBody: string) => {
     try {
       await addDoc(collection(db, "posts"), {
         id: nanoid(),
@@ -54,36 +48,15 @@ const MainPage = () => {
     }
   }
 
-  function getDate(date:string) {
-    const validDate = new Date(+date);
-    return validDate.toLocaleString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
-  }
-
   return (
     <div>
       {isAuth
       ? 
         <div className="container main__container">
           <div className='main__content'>
-            <div className='card'>
-              <input onChange={(e) => setPostBody(e.target.value)} className='input' type="text"/>
-              <button onClick={createNewPost}>Отправить</button>
-            </div>
-            <ul className='post-card__list'>
-              {posts.map(post => 
-                <li className='card' key={post.id}>
-                  <div className='post-card__header'>
-                    <img src={post.img} alt={post.name}/>
-                    <div className='post-card__header-description'>
-                      <h5>{post.name}</h5>
-                      <span>{getDate(post.date)}</span>
-                    </div>
-                  </div>
-                  <p className='post-card__body'>{post.body}</p>
-                </li>
-              )}
-            </ul>
-            </div>
+            <PostCreate createNewPost={createNewPost}/>
+            <PostsList posts={posts}/>
+          </div>
         </div>
       : <Navigate to='/login'/>
       }

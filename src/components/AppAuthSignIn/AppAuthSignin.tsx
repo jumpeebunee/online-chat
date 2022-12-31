@@ -1,8 +1,8 @@
-import '../styles/components/AppAuthSign.scss';
+import '../../styles/components/AppAuthSign.scss';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AppAuthInput from './AppAuthInput';
-import { ILogin } from '../types/types';
+import AppAuthInput from '../AppAuthInput';
+import { ILogin } from '../../types/types';
 
 interface AppAuthSigninProps {
   userData: ILogin,

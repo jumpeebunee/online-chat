@@ -17,3 +17,11 @@ export type IUserData = {
   email: string, 
   password: string
 }
+
+export type IPost = {
+  id: string,
+  name: string,
+  img: string,
+  date: string,
+  body: string,
+}

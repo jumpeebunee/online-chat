@@ -25,6 +25,7 @@ const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey
       className={isError ? [cl.input, cl.input_error].join(' ') : cl.input}
       placeholder={title}
       onChange={(e) => changeData(e)}
+      autoComplete="true"
     />
   )
 }
