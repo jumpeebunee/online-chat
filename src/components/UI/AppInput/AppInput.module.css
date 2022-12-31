@@ -13,3 +13,13 @@
   background-color: rgba(241, 88, 87, 0.4);
   border: 1px solid #F15857;
 }
+
+@media (max-width: 450px) {
+  .input {
+    height: 8vw;
+    padding: 1.78vw 2.67vw;
+    line-height: 4.44vw;
+    font-size: 3.56vw;
+    border-radius: 1.78vw;
+  }
+}

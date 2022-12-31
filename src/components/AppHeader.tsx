@@ -1,4 +1,5 @@
 import '../styles/components/appHeader.scss';
+import '../styles/components/appNav.scss';
 import { Link, useLocation } from "react-router-dom"
 import { auth } from '../firebase';
 
@@ -13,8 +14,8 @@ const AppHeader = () => {
   return (
     <header className="header">
       <div className="container header__container">
-        <Link to="/">
-          <svg width="134" height="48" viewBox="0 0 134 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Link className='header__logo' to="/">
+          <svg viewBox="0 0 134 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_122_13)">
             <path d="M20.5833 0H5.41667C2.42512 0 0 2.37563 0 5.30612V20.6939C0 23.6244 2.42512 26 5.41667 26H20.5833C23.5749 26 26 23.6244 26 20.6939V5.30612C26 2.37563 23.5749 0 20.5833 0Z" fill="white"/>
             <path d="M4.95972 17.5102V16.3412L9.17034 10.6869H4.96395V9.02042H11.8194V10.1894L7.60882 15.8438H11.8152V17.5102H4.95972ZM13.1006 17.5102V9.02042H15.1953V12.428H18.6103V9.02042H20.7008V17.5102H18.6103V14.0985H15.1953V17.5102H13.1006Z" fill="#222222"/>
