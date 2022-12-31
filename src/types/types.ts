@@ -6,6 +6,11 @@ export type IUser = {
   photoURL: string | null,
 }
 
+export type ILogin = {
+  email: string,
+  password: string,
+}
+
 export type IUserData = {
   firstName: string,
   lastName: string, 

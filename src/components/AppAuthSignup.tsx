@@ -47,6 +47,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
         <h2 className="login__heading">Регистрация Жигаловка</h2>
         <form className='login__form'>
           <AppAuthInput
+            type={'text'}
             title={'Имя'}
             isError={isErrors.firstName}
             setValue={setUserData}
@@ -55,6 +56,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
             errorMessage={'Введите корректное имя'}
           />
           <AppAuthInput
+            type={'text'}
             title={'Фамилия'}
             isError={isErrors.lastName}
             setValue={setUserData}
@@ -63,6 +65,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
             errorMessage={'Введите корректную фамилию'}
           />
           <AppAuthInput
+            type={'email'}
             title={'Почта'}
             isError={isErrors.email}
             setValue={setUserData}
@@ -71,6 +74,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
             errorMessage={'Введите корректную почту'}
           />
           <AppAuthInput
+            type={'password'}
             title={'Пароль'}
             isError={isErrors.password}
             setValue={setUserData}

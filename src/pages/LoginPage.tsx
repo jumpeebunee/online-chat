@@ -12,11 +12,12 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [userEmail, setUserEmail] = useState('');
-  const [userPassword, setUserPassword] = useState('');
+  // const [userEmail, setUserEmail] = useState('');
+  // const [userPassword, setUserPassword] = useState('');
+  const [userData, setUserData] = useState({email: '', password: ''});
 
   const loginUser = () => {
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
+    signInWithEmailAndPassword(auth, userData.email, userData.password)
     .then((userCredential) => {
       const user = userCredential.user;
       const userData: IUser = {
@@ -38,10 +39,8 @@ const LoginPage = () => {
   return (
     <div className='container login__container'>
       <AppAuthSignin
-        setUserEmail={setUserEmail}
-        setUserPassword={setUserPassword}
-        userEmail={userEmail}
-        userPassword={userPassword}
+        userData={userData}
+        setUserData={setUserData}
         createNewUser={loginUser}
       />
     </div>

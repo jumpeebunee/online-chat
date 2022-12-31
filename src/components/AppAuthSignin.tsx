@@ -1,20 +1,30 @@
-import { FC, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/components/AppAuthSign.scss';
+import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AppAuthInput from './AppAuthInput';
+import { ILogin } from '../types/types';
 
 interface AppAuthSigninProps {
-  setUserEmail: Function,
-  setUserPassword: Function,
-  userEmail: string,
-  userPassword: string,
+  userData: ILogin,
+  setUserData: Function,
   createNewUser: Function,
 }
 
-const AppAuthSignin:FC<AppAuthSigninProps> = ({setUserEmail, setUserPassword, userEmail, userPassword, createNewUser}) => {
+const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewUser}) => {
 
-  const loginToProfile = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createNewUser();
+  const [isErrors, setIsErrors] = useState({email: false, password: false});
+
+  const loginToProfile = () => {
+    const isValid = validateUserInfo();
+    if (isValid) createNewUser();
+  }
+
+  const validateUserInfo = () => {
+    const isEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]{2,3}$/.test((userData.email.trim()));
+    const isPassword = userData.password.length >= 6;
+
+    setIsErrors({email: !isEmail, password: !isPassword});
+    return isEmail && isPassword;
   }
 
   return (
@@ -27,24 +37,27 @@ const AppAuthSignin:FC<AppAuthSigninProps> = ({setUserEmail, setUserPassword, us
         </svg>
         </div>
         <h2 className="login__heading">Вход Жигаловка</h2>
-        <form onSubmit={(e) => loginToProfile(e)} className='login__form'>
-          <input
-            onChange={(e) => setUserEmail(e.target.value)}
-            value={userEmail} 
-            className='input'
-            type="text"
-            placeholder='Почта'
-            data-testid="email-input"
+        <form className='login__form'>
+          <AppAuthInput
+            type={'email'}
+            title={'Почта'}
+            isError={isErrors.email}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'email'}
+            errorMessage={'Введите корректную почту'}
           />
-          <input onChange={(e) => setUserPassword(e.target.value)}
-            value={userPassword}
-            className='input'
-            type="password"
-            placeholder='Пароль'
-            autoComplete="true"
+          <AppAuthInput
+            type={'password'}
+            title={'Пароль'}
+            isError={isErrors.password}
+            setValue={setUserData}
+            value={userData}
+            currentKey={'password'}
+            errorMessage={'Введите корректный пароль'}
           />
         </form>
-        <button onClick={() => createNewUser()} className='btn login__btn'>Войти</button>
+        <button onClick={() => loginToProfile()} className='btn login__btn'>Войти</button>
         <span className='login__or'>или</span>
         <Link to='/auth' className='btn register-btn'>Зарегистрироваться</Link>
       </div>

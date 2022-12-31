@@ -1,16 +1,17 @@
 import React, { ChangeEvent, FC } from 'react'
-import { IUserData } from '../../../types/types';
+import { IUserData, ILogin } from '../../../types/types'; 
 import cl from './AppInput.module.css';
 
 interface AppInputProps {
   title: string,
   isError: boolean,
   setValue: Function,
-  value: IUserData,
+  value: IUserData | ILogin,
   currentKey: string,
+  type: string,
 }
 
-const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey}) => {
+const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey, type}) => {
 
   function changeData(e: ChangeEvent<HTMLInputElement>) {
     const copyObject = value;
@@ -20,7 +21,7 @@ const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey
 
   return (
     <input
-      type="text"
+      type={type}
       className={isError ? [cl.input, cl.input_error].join(' ') : cl.input}
       placeholder={title}
       onChange={(e) => changeData(e)}
