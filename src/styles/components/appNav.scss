@@ -35,6 +35,8 @@
 .app-nav__item-icon {
   width: 16px;
   height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .app-nav__item_active {

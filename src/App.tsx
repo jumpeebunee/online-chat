@@ -45,8 +45,7 @@ const App = () => {
         <main className="main">
           <div className="container main__container">
             {location.pathname !== '/login' && location.pathname !== '/auth'
-            ? 
-            <AppNav/>
+            ? <AppNav/>
             : ''
             }
             <section className="main-section">
