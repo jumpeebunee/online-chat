@@ -12,11 +12,11 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [userEmail, setUserEmail] = useState('');
-  // const [userPassword, setUserPassword] = useState('');
   const [userData, setUserData] = useState({email: '', password: ''});
+  const [serverError, setServerError] = useState('');
 
   const loginUser = () => {
+    setServerError('');
     signInWithEmailAndPassword(auth, userData.email, userData.password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -31,8 +31,8 @@ const LoginPage = () => {
       navigate('/');
     })
     .catch((error) => {
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
+      const errorMessage = error.message;
+      setServerError(errorMessage);
     });
   }
 
@@ -42,6 +42,7 @@ const LoginPage = () => {
         userData={userData}
         setUserData={setUserData}
         createNewUser={loginUser}
+        serverError={serverError}
       />
     </div>
   )

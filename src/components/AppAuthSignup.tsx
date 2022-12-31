@@ -7,6 +7,7 @@ interface AppAuthSignupProps {
   createNewUser: Function,
   userData: IUserData,
   setUserData: Function,
+  serverError: string,
 }
 
 type IErrors = {
@@ -16,7 +17,7 @@ type IErrors = {
   password: boolean,
 }
 
-const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUserData,}) => {
+const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUserData, serverError}) => {
 
   const [isErrors, setIsErrors] = useState<IErrors>({firstName: false, lastName: false, email: false, password: false});
 
@@ -84,6 +85,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
           />
         </form>
         <button onClick={() => createUser()} className='btn login__btn'>Зарегистрироваться</button>
+        {serverError && <label className='login__label'>{serverError}</label>}
         <span className='login__or'>или</span>
         <Link to='/login' className='btn register-btn'>Вход</Link>
       </div>

@@ -8,9 +8,10 @@ interface AppAuthSigninProps {
   userData: ILogin,
   setUserData: Function,
   createNewUser: Function,
+  serverError: string,
 }
 
-const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewUser}) => {
+const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewUser, serverError}) => {
 
   const [isErrors, setIsErrors] = useState({email: false, password: false});
 
@@ -58,6 +59,7 @@ const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewU
           />
         </form>
         <button onClick={() => loginToProfile()} className='btn login__btn'>Войти</button>
+        {serverError && <label className='login__label'>{serverError}</label>}
         <span className='login__or'>или</span>
         <Link to='/auth' className='btn register-btn'>Зарегистрироваться</Link>
       </div>

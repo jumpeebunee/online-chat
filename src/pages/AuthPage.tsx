@@ -10,13 +10,15 @@ const AuthPage = () => {
 
   const dispatch = useDispatch();
 
-  const [userData, setUserData] = useState<IUserData>({firstName: '', lastName: '', email: '', password: ''})
+  const [userData, setUserData] = useState<IUserData>({firstName: '', lastName: '', email: '', password: ''});
+  const [serverError, setServerError] = useState('');
 
   const getRandomNumber = () => {
     return Math.floor(Math.random() * (200 - 1) + 1);
   }
 
   const createNewUser = async () => {
+    setServerError('');
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -45,7 +47,7 @@ const AuthPage = () => {
       }
     }).catch((error) => { 
       const errorMessage = error.message;
-      console.log(errorMessage);
+      setServerError(errorMessage);
     });
   }
 
@@ -55,6 +57,7 @@ const AuthPage = () => {
         createNewUser={createNewUser}
         userData={userData}
         setUserData={setUserData}
+        serverError={serverError}
       />
     </div>
   )
