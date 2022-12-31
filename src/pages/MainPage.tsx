@@ -26,6 +26,7 @@ const MainPage = () => {
         doc.forEach((d: any) => {
           posts.push(d.data())
         })
+        posts.sort((a,b) => +b.date - +a.date)
         setPosts([...posts]);
         return () => {
           unsub();

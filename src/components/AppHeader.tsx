@@ -5,7 +5,6 @@ import { auth } from '../firebase';
 const AppHeader = () => {
 
   const location = useLocation();
-  console.log(location)
 
   const logOut = () => {
     auth.signOut();
