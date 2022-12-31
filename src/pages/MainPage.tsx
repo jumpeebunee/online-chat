@@ -64,8 +64,7 @@ const MainPage = () => {
       {isAuth
       ? 
         <div className="container main__container">
-          <button>Выйти из профиля</button>
-          <div>
+          <div className='main__content'>
             <div className='card'>
               <input onChange={(e) => setPostBody(e.target.value)} className='input' type="text"/>
               <button onClick={createNewPost}>Отправить</button>

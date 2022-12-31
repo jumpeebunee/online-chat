@@ -2,3 +2,18 @@
   display: flex;
   justify-content: space-between;
 }
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+// * post-card__list 
+
+.post-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
