@@ -1,0 +1,25 @@
+.header {
+  background: #222222;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__btn {
+  display: block;
+  height: 48px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  background-color: transparent;
+  transition: background-color ease .2s;
+
+  &:hover {
+    background-color: #333333;
+  }
+}
