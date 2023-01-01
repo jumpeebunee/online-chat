@@ -28,6 +28,8 @@ const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewU
     return isEmail && isPassword;
   }
 
+  console.log('q')
+
   return (
     <div className='login__card'>
       <div className='login__header'>
