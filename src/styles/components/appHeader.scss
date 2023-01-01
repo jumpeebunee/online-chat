@@ -8,6 +8,15 @@
   justify-content: space-between;
 }
 
+.header__logo {
+  height: 48px;
+
+  svg {
+    max-width: 134px;
+    height: 100%;
+  }
+}
+
 .header__btn {
   display: block;
   height: 48px;
@@ -21,5 +30,23 @@
 
   &:hover {
     background-color: #333333;
+  }
+}
+
+@media (max-width: 450px) {
+  .header__logo {
+    height: 10.67vw;
+  
+    svg {
+      max-width: 29.78vw;
+    }
+  }
+  
+  .header__btn {
+    height: 10.67vw;
+    padding-left: 3.33vw;
+    padding-right: 3.33vw;
+    font-size: 3.56vw;
+    line-height: 4.22vw;
   }
 }

@@ -49,14 +49,12 @@ const MainPage = () => {
   }
 
   return (
-    <div>
+    <div className="main__container">
       {isAuth
       ? 
-        <div className="container main__container">
-          <div className='main__content'>
-            <PostCreate createNewPost={createNewPost}/>
-            <PostsList posts={posts}/>
-          </div>
+        <div className='main__content'>
+          <PostCreate createNewPost={createNewPost}/>
+          <PostsList posts={posts}/>
         </div>
       : <Navigate to='/login'/>
       }

@@ -39,3 +39,36 @@
     color: rgba(255, 255, 255, 0.6);
   }
 }
+
+@media (max-width: 450px) {
+  .post-card__item {
+    padding: 5.56vw 6.67vw;
+    border-radius: 4.44vw;
+  }
+  
+  .post-card__header {
+    img {
+      width: 12.44vw;
+      height: 12.44vw;
+    }
+  }
+  
+  .post-card__body {
+    margin-top: 2.22vw;
+    font-size: 3.11vw;
+  }
+  
+  .post-card__header-description {
+    margin-left: 3.33vw;
+  
+    h5 {
+      font-size: 3.11vw;
+      line-height: 3.56vw;
+    }
+    span {
+      margin-top: 0.67vw;
+      font-size: 2.67vw;
+      line-height: 3.11vw;
+    }
+  }
+}

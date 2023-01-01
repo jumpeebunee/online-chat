@@ -14,3 +14,17 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .create-post__card {
+    gap: 4.44vw;
+  
+    input {
+      height: 7.11vw;
+  
+      &::placeholder {
+        font-size: 3.56vw;
+      }
+    }
+  }
+}
