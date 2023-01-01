@@ -1,8 +1,9 @@
-import { FC, useState } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/components/appAuthSign.scss';
 import { IUserData } from '../types/types';
 import AppAuthInput from './AppAuthInput';
+
 interface AppAuthSignupProps {
   createNewUser: Function,
   userData: IUserData,
@@ -34,6 +35,13 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
 
     setIsErrors({firstName: !isFirstName, lastName: !isLastName, email: !isEmail, password: !isPassword});
     return isFirstName && isLastName && isEmail && isPassword;
+  }
+
+  function testik(e: FormEvent<HTMLInputElement>) {
+    let file = (e.target as HTMLInputElement);
+    if (file.files) {
+      setUserData({...userData, image: file.files[0]});
+    }
   }
 
   return (
@@ -83,6 +91,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
             currentKey={'password'}
             errorMessage={'Enter a valid password'}
           />
+          <input onChange={(e) => testik(e)} type="file" accept="image/png, image/gif, image/jpeg"/>
         </form>
         <button onClick={() => createUser()} className='btn login__btn'>Sign up</button>
         {serverError && <label className='login__label'>{serverError}</label>}

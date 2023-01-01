@@ -15,7 +15,8 @@ export type IUserData = {
   firstName: string,
   lastName: string, 
   email: string, 
-  password: string
+  password: string,
+  image: null | File
 }
 
 export type IPost = {
