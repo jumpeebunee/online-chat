@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { Navigate } from "react-router-dom";
 import { IPost } from '../types/types';
 import { useAuth } from "../hooks/use-auth";
+import { auth } from '../firebase';
 import { nanoid } from '@reduxjs/toolkit';
+import { onAuthStateChanged } from "firebase/auth";
 import { useSelector } from 'react-redux';
 import { getUserName, getUserImage } from '../app/feautures/userSlice';
 import { collection, addDoc, onSnapshot  } from "firebase/firestore"; 
@@ -47,6 +49,10 @@ const MainPage = () => {
       console.error("Error adding document: ", e);
     }
   }
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) window.location.pathname = '/login';
+  });
 
   return (
     <div className="main__container">
