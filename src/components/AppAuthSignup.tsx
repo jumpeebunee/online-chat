@@ -45,49 +45,49 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
           <path d="M9.15625 33V30.7969L16.9297 20.1406H9.16406V17H21.8203V19.2031L14.0469 29.8594H21.8125V33H9.15625ZM24.1855 33V17H28.0527V23.4219H34.3574V17H38.2168V33H34.3574V26.5703H28.0527V33H24.1855Z" fill="#222222"/>
         </svg>
         </div>
-        <h2 className="login__heading">Регистрация Жигаловка</h2>
+        <h2 className="login__heading">Sign up Zhigalovka</h2>
         <form className='login__form'>
           <AppAuthInput
             type={'text'}
-            title={'Имя'}
+            title={'Firstname'}
             isError={isErrors.firstName}
             setValue={setUserData}
             value={userData}
             currentKey={'firstName'}
-            errorMessage={'Введите корректное имя'}
+            errorMessage={'Enter a valid firstname'}
           />
           <AppAuthInput
             type={'text'}
-            title={'Фамилия'}
+            title={'Lastname'}
             isError={isErrors.lastName}
             setValue={setUserData}
             value={userData}
             currentKey={'lastName'}
-            errorMessage={'Введите корректную фамилию'}
+            errorMessage={'Enter a valid lastname'}
           />
           <AppAuthInput
             type={'email'}
-            title={'Почта'}
+            title={'Email'}
             isError={isErrors.email}
             setValue={setUserData}
             value={userData}
             currentKey={'email'}
-            errorMessage={'Введите корректную почту'}
+            errorMessage={'Enter a valid email'}
           />
           <AppAuthInput
             type={'password'}
-            title={'Пароль'}
+            title={'Password'}
             isError={isErrors.password}
             setValue={setUserData}
             value={userData}
             currentKey={'password'}
-            errorMessage={'Введите корректный пароль'}
+            errorMessage={'Enter a valid password'}
           />
         </form>
-        <button onClick={() => createUser()} className='btn login__btn'>Зарегистрироваться</button>
+        <button onClick={() => createUser()} className='btn login__btn'>Sign up</button>
         {serverError && <label className='login__label'>{serverError}</label>}
-        <span className='login__or'>или</span>
-        <Link to='/login' className='btn register-btn'>Вход</Link>
+        <span className='login__or'>or</span>
+        <Link to='/login' className='btn register-btn'>Sign in</Link>
       </div>
     </div>
   )

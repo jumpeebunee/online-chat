@@ -1,14 +1,15 @@
 import '../styles/components/postItem.scss';
 import { FC } from "react"
 import { IPost } from "../types/types"
+import {formatDistanceToNow } from 'date-fns'
 
 interface PostItemProps {
   post: IPost,
 }
 
 function getDate(date:string) {
-  const validDate = new Date(+date);
-  return validDate.toLocaleString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
+  const validDate = new Date(+date);  
+  return formatDistanceToNow(validDate, {addSuffix: true});
 }
 
 const PostItem:FC<PostItemProps> = ({post}) => {

@@ -9,12 +9,12 @@ const AppNav = () => {
   const pages = [
     {
       path: '/',
-      title: 'Главная',
+      title: 'Home',
       icon: './home.svg'
     },
     {
       path: '/profile',
-      title: 'Профиль',
+      title: 'Profile',
       icon: './profile.svg'
     }
   ];

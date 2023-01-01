@@ -30,7 +30,7 @@ const AppHeader = () => {
         </Link>
         {location.pathname === '/login' || location.pathname === '/auth'
         ? ''
-        : <button onClick={() => logOut()} className='header__btn'>Выйти</button>
+        : <button onClick={() => logOut()} className='header__btn'>Logout</button>
         }
       </div>
     </header>
