@@ -7,6 +7,7 @@
 
 .main {
   padding-top: 20px;
+  padding-bottom: 20px;
   min-height: 100vh;
   background-color: #141414;
 }
@@ -28,7 +29,9 @@
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1060px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -65,4 +68,51 @@
   background-color: #222222;
   border: 1px solid #828282;
   border-radius: 20px;
+}
+
+@media (max-width: 824px) {
+  .main {
+    padding-bottom: 68px;
+  }
+
+}
+
+@media (max-width: 450px) {
+  .main {
+    padding-top: 4.44vw;
+    padding-bottom: 15.11vw;
+  }
+
+  .input {
+    height: 8vw;
+    padding: 1.78vw 2.67vw;
+    line-height: 4.44vw;
+    font-size: 3.56vw;
+    border-radius: 1.78vw;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding-left: 6.67vw;
+    padding-right: 6.67vw;
+  }
+  
+  .btn {
+    font-size: 3.56vw;
+    height: 8vw;
+    border-radius: 1.78vw;
+  }
+  
+  .small-btn {
+    padding: 1.78vw 3.56vw;
+    font-size: 3.11vw;
+    line-height: 3.56vw;
+    border-radius: 2.22vw;
+  }
+  
+  .card {
+    max-width: 146.67vw;
+    padding: 5.56vw 6.67vw;
+    border-radius: 4.44vw;
+  }  
 }

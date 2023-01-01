@@ -6,3 +6,11 @@
   width: 100%;
   gap: 20px;
 }
+
+@media (max-width: 450px) {
+  .post-card__list {
+    margin-top: 4.44vw;
+    max-width: 146.67vw;
+    gap: 4.44vw;
+  }
+}

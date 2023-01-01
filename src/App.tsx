@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { setUser } from './app/feautures/userSlice';
 import AppNavigation from "./components/AppNavigation"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AppHeader from "./components/AppHeader";
+import AppNav from "./components/AppNav";
 
 const App = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +43,15 @@ const App = () => {
       <div>
         <AppHeader/>
         <main className="main">
-          <AppNavigation/>
+          <div className="container main__container">
+            {location.pathname !== '/login' && location.pathname !== '/auth'
+            ? <AppNav/>
+            : ''
+            }
+            <section className="main-section">
+              <AppNavigation/>
+            </section>
+          </div>
         </main>
       </div>
       : 
