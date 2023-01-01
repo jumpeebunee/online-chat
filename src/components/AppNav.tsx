@@ -33,7 +33,7 @@ const AppNav = () => {
     </ul>
     <ul className="app-nav__m-content">
       {pages.map(page => 
-        <li key={page.path} className="app-nav__item">
+        <li key={page.path} className={location.pathname === page.path ? 'app-nav__item app-nav__item_active' : 'app-nav__item'}>
           <Link to={page.path}>
             <span style={{backgroundImage: `url(${page.icon})`}} className='app-nav__item-icon'></span>
           </Link>
