@@ -17,7 +17,7 @@ const PostCreate:FC<PostCreateProps> = ({createNewPost}) => {
   }
 
   return (
-    <div className='card create-post__card'>
+    <div className='create-post__card'>
       <input onChange={(e) => setPostBody(e.target.value)} value={postBody} className='create-post__card-input' type="text" placeholder='Whats new?'/>
       <button className='create-post__card-button small-btn' onClick={() => createPost()}>Publish</button>
     </div>

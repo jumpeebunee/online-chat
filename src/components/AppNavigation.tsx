@@ -4,6 +4,7 @@ import AuthPage from '../pages/AuthPage'
 import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 import ProfilePage from '../pages/ProfilePage'
+import MessagePage from '../pages/MessagePage'
 
 const AppNavigation = () => {
   return (
@@ -12,6 +13,7 @@ const AppNavigation = () => {
       <Route path='/login' element={<LoginPage/>}></Route>
       <Route path='/auth' element={<AuthPage/>}></Route>
       <Route path='/profile' element={<ProfilePage/>}></Route>
+      <Route path='/messages' element={<MessagePage/>}></Route>
     </Routes>
   )
 }

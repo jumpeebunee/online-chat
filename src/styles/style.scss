@@ -70,11 +70,15 @@
   border-radius: 20px;
 }
 
+.main-section {
+  max-width: 660px;
+}
+
 @media (max-width: 824px) {
   .main {
+    max-width: 100%;
     padding-bottom: 68px;
   }
-
 }
 
 @media (max-width: 450px) {

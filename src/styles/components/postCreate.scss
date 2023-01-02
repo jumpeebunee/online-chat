@@ -2,7 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 660px;
+  width: 100%;
+  background-color: #222222;
+  border: 1px solid #828282;
+  border-radius: 20px;
   gap: 20px;
+  padding: 15px 20px;
 
   input {
     width: 100%;
