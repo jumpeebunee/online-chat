@@ -5,6 +5,7 @@ import LoginPage from '../pages/LoginPage'
 import MainPage from '../pages/MainPage'
 import ProfilePage from '../pages/ProfilePage'
 import MessagePage from '../pages/MessagePage'
+import UserMessages from '../pages/UserMessages'
 
 const AppNavigation = () => {
   return (
@@ -14,6 +15,7 @@ const AppNavigation = () => {
       <Route path='/auth' element={<AuthPage/>}></Route>
       <Route path='/profile' element={<ProfilePage/>}></Route>
       <Route path='/messages' element={<MessagePage/>}></Route>
+      <Route path='/message/:id' element={<UserMessages/>}></Route>
     </Routes>
   )
 }
