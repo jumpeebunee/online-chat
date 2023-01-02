@@ -1,6 +1,8 @@
-import { FormEvent, KeyboardEvent, useState } from "react"
-import { collection, query, where, getDocs, DocumentData  } from "firebase/firestore";
+import { KeyboardEvent, useState } from "react"
+import { collection, query, where, getDocs, getDoc, DocumentData, doc, setDoc, updateDoc, serverTimestamp  } from "firebase/firestore";
 import { db } from "../firebase";
+import { getCurrentUser } from "../app/feautures/userSlice";
+import { useSelector } from "react-redux";
 
 const MessagePage = () => {
 
@@ -9,6 +11,7 @@ const MessagePage = () => {
   const [err, setErr] = useState(false);
 
   const citiesRef = collection(db, "users");
+  const currentUser = useSelector(getCurrentUser);
 
   const handleSearch = async () => {
     setErr(false);
@@ -29,6 +32,41 @@ const MessagePage = () => {
     if (e.code === 'Enter') handleSearch();
   }
 
+  const handleSelect = async () => {
+    if (user && currentUser.uid) {
+      const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
+      try {
+        const docRef = doc(db, 'chats', combinedId);
+        const res = await getDoc(docRef); 
+
+        if(!res.exists()) {
+          await setDoc(doc(db, 'chats', combinedId), {
+            message: [],
+          });
+        }
+        await updateDoc(doc(db, 'usersChats', currentUser.uid), {
+          [combinedId + '.userInfo']: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoUrl: `${user.photoURL}`
+          },
+          [combinedId + '.date']: serverTimestamp(),
+        }) 
+        await updateDoc(doc(db, 'usersChats', user.uid), {
+          [combinedId + '.userInfo']: {
+            uid: currentUser.uid,
+            displayName: currentUser.name,
+            photoUrl: `${currentUser.photoURL}`
+          },
+          [combinedId + '.date']: serverTimestamp(),
+        }) 
+      } catch (error) {
+      }
+    }
+    setUser({});
+    setUserName('');
+  }
+
   return (
     <div>
       <input
@@ -39,7 +77,7 @@ const MessagePage = () => {
         className="input message-page__search"
       /> 
       {user && 
-        <div>
+        <div onClick={handleSelect}>
           <img src={user.photoURL}/>
           <h4>{user.displayName}</h4>
         </div>

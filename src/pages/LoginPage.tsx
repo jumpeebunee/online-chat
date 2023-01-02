@@ -22,7 +22,7 @@ const LoginPage = () => {
       const user = userCredential.user;
       const userData: IUser = {
         email: user.email,
-        id: user.uid,
+        uid: user.uid,
         name: user.displayName,
         accessToken: user.refreshToken,
         photoURL: user.photoURL,

@@ -22,9 +22,9 @@ const App = () => {
       if (user) {
         const data = {
           email: user.email,
-          accessToken: user.uid,
+          accessToken: user.refreshToken,
           name: user.displayName,
-          id:  user.refreshToken,
+          uid: user.uid,
           photoURL: user.photoURL,
         }
         navigate('/')

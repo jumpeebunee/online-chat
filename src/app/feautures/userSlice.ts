@@ -6,7 +6,7 @@ const initialState: IUser = {
   email: null,
   accessToken: null,
   name: null,
-  id: null,
+  uid: null,
   photoURL: null,
 }
 
@@ -15,11 +15,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<IUser>) {
-      const {email, photoURL, name, accessToken, id} = action.payload;
+      const {email, photoURL, name, uid, accessToken} = action.payload;
       if (email) state.email = email;
       if (accessToken) state.accessToken = accessToken;
       if (name) state.name = name;
-      if (id) state.id = id;
+      if (uid) state.uid = uid;
       if (photoURL) state.photoURL = photoURL;
     },
     updateImage(state, action: PayloadAction<string>) {
@@ -35,3 +35,4 @@ export default userSlice.reducer;
 export const {setUser, updateImage, updateName} = userSlice.actions;
 export const getUserName = ((state: RootState) => state.user.name);
 export const getUserImage = ((state: RootState) => state.user.photoURL);
+export const getCurrentUser = ((state: RootState) => state.user);
