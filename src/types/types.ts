@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore"
+
 export type IUser = {
   email: string,
   accessToken: string,
@@ -38,4 +40,11 @@ export type ActiveUser = {
   photoURL: string,
   email: string,
   uid: string,
+}
+
+export type IMessage = {
+  date: Timestamp,
+  id: string,
+  senderUser: string,
+  textMessage: string,
 }

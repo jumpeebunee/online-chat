@@ -1,6 +1,6 @@
 import '../styles/pages/messagePage.scss';
 import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { DocumentData, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import { getCurrentUser } from "../app/feautures/userSlice";
@@ -17,7 +17,6 @@ const MessagePage = () => {
   const [chats, setChats] = useState<DocumentData[]>([]);
 
   const currentUser = useSelector(getCurrentUser);
-  const dispatch = useDispatch();
 
   const openDialog = (userDialog: string) => {
     if (currentUser.uid) {

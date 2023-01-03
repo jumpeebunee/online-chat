@@ -7,14 +7,8 @@ import { nanoid } from "@reduxjs/toolkit";
 import { getCurrentUser } from "../app/feautures/userSlice";
 import { getSecondUser } from '../app/feautures/currentUserSlice';
 import { useSelector } from "react-redux";
-import getDate from '../helpers/getDate';
-
-type IMessage = {
-  date: Timestamp,
-  id: string,
-  senderUser: string,
-  textMessage: string,
-}
+import { IMessage } from '../types/types';
+import MessageOpenItem from '../components/MessageOpenItem';
 
 const UserMessages = () => {
 
@@ -81,36 +75,31 @@ const UserMessages = () => {
             <div key={item.date.toString()}>
               {item.senderUser === currentUser.uid 
               ? 
-              <div className='messages__item'>
-                <img className='messages__img' alt={secondUser.displayName} src={secondUser.photoUrl}/>
-                <div>
-                  <div className='messages__item-header'>
-                    <h2>{secondUser.displayName}</h2>
-                    <span>{getDate(item.date.seconds.toString())}</span>
-                  </div>
-                  <p className='messages__item-description'>
-                    {item.textMessage}
-                  </p>
-                </div>
-              </div>
+              <MessageOpenItem
+                senderUser={true}
+                currentUser={currentUser}
+                secondUser={secondUser}
+                item={item}
+              />
               : 
-              <div className='messages__item'>
-                <img className='messages__img' alt={currentUser.name?.toString()} src={currentUser.photoURL.toString()}/>
-                <div>
-                  <div className='messages__item-header'>
-                    <h2>{currentUser.name?.toString()}</h2>
-                    <span>{getDate(item.date.seconds.toString())}</span>
-                  </div>
-                  <p className='messages__item-description'>
-                    {item.textMessage}
-                  </p>
-                </div>
-              </div>
+              <MessageOpenItem
+                senderUser={false}
+                currentUser={currentUser}
+                secondUser={secondUser}
+                item={item}
+              />
               }
             </div>
           )}
         </div>
-        <input onKeyDown={(e) => handleSend(e)} onChange={(e) => setTextMessage(e.target.value)} value={textMessage} className="input" type="text" placeholder="message"/>
+        <input 
+          onKeyDown={(e) => handleSend(e)}
+          onChange={(e) => setTextMessage(e.target.value)}
+          value={textMessage}
+          className="input"
+          type="text"
+          placeholder="message"
+        />
       </div>
     </section>
   )
