@@ -1,9 +1,15 @@
 export type IUser = {
-  email: string | null,
-  accessToken: string | null,
-  name: string | null,
-  uid: string | null,
-  photoURL: string | null,
+  email: string,
+  accessToken: string,
+  name: string,
+  uid: string,
+  photoURL: string,
+}
+
+export type ICurrentUser = {
+  uid: string,
+  photoUrl: string,
+  displayName: string,
 }
 
 export type ILogin = {

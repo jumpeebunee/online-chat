@@ -6,6 +6,7 @@ import AppNavigation from "./components/AppNavigation"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AppHeader from "./components/AppHeader";
 import AppNav from "./components/AppNav";
+import { IUser } from "./types/types";
 
 const App = () => {
 
@@ -20,15 +21,15 @@ const App = () => {
     setIsLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const data = {
-          email: user.email,
-          accessToken: user.refreshToken,
-          name: user.displayName,
-          uid: user.uid,
-          photoURL: user.photoURL,
-        }
-        navigate('/')
+          const data: IUser = {
+            email: user.email as string,
+            accessToken: user.refreshToken,
+            name: user.displayName as string,
+            uid: user.uid,
+            photoURL: user.photoURL as string,
+          }
         dispatch(setUser(data));
+        navigate('/');
       } else {
         navigate('/login');
       }
@@ -48,9 +49,9 @@ const App = () => {
             ? <AppNav/>
             : ''
             }
-            <section className="main-section">
+            <div className="main-app">
               <AppNavigation/>
-            </section>
+            </div>
           </div>
         </main>
       </div>

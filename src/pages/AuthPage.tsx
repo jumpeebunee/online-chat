@@ -16,7 +16,6 @@ const AuthPage = () => {
   const [userData, setUserData] = useState<IUserData>({firstName: '', lastName: '', email: '', password: '', image: null});
   const [serverError, setServerError] = useState('');
 
-
   const createNewUser = async () => {
 
     const displayName = `${userData.firstName.trim()} ${userData.lastName.trim()}`;

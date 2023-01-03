@@ -20,15 +20,17 @@ const LoginPage = () => {
     signInWithEmailAndPassword(auth, userData.email, userData.password)
     .then((userCredential) => {
       const user = userCredential.user;
-      const userData: IUser = {
-        email: user.email,
-        uid: user.uid,
-        name: user.displayName,
-        accessToken: user.refreshToken,
-        photoURL: user.photoURL,
+      if (user.email && user.displayName && user.photoURL) {
+        const userData: IUser = {
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName,
+          accessToken: user.refreshToken,
+          photoURL: user.photoURL,
+        }
+        dispatch(setUser(userData));
+        navigate('/');
       }
-      dispatch(setUser(userData));
-      navigate('/');
     })
     .catch((error) => {
       const errorMessage = error.message;

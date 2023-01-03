@@ -3,11 +3,11 @@ import { IUser } from "../../types/types";
 import { RootState } from "../store";
 
 const initialState: IUser = {
-  email: null,
-  accessToken: null,
-  name: null,
-  uid: null,
-  photoURL: null,
+  email: '',
+  accessToken: '',
+  name: '',
+  uid: '',
+  photoURL: '',
 }
 
 const userSlice = createSlice({

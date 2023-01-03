@@ -5,15 +5,22 @@ import { db } from "../firebase";
 import { getCurrentUser } from "../app/feautures/userSlice";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { addCurrentUser } from '../app/feautures/currentUserSlice';
+import { ICurrentUser } from '../types/types';
+import { useDispatch } from 'react-redux';
+import getDate from '../helpers/getDate';
+
+type Test = DocumentData | null;
 
 const MessagePage = () => {
   const [chats, setChats] = useState<DocumentData[]>([]);
   const [userName, setUserName] = useState('');
-  const [user, setUser] = useState<DocumentData>();
+  const [user, setUser] = useState<Test>();
   const [err, setErr] = useState(false);
 
   const citiesRef = collection(db, "users");
   const currentUser = useSelector(getCurrentUser);
+  const dispatch = useDispatch();
 
   const handleSearch = async () => {
     setErr(false);
@@ -65,7 +72,7 @@ const MessagePage = () => {
       } catch (error) {
       }
     }
-    setUser({});
+    setUser(null);
     setUserName('');
   }
 
@@ -78,15 +85,22 @@ const MessagePage = () => {
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "usersChats", `${currentUser.uid}`), (doc) => {
       const chatsData = doc.data();
-      if (chatsData) setChats(Object.entries(chatsData as DocumentData[]));
+      if (chatsData) {
+        setChats(Object.entries(chatsData as DocumentData[]));
+      };
     });
     return () => {
       unsub();
     }
   }, [currentUser.uid]);
 
+  const addUser = (value: ICurrentUser) => {
+    dispatch(addCurrentUser(value));
+  }
+
+
   return (
-    <div>
+    <section className='main-section'>
       <div>
         <input
           type="text"
@@ -94,24 +108,35 @@ const MessagePage = () => {
           onChange={(e) => setUserName(e.target.value)}
           onKeyDown={(e) => handleKey(e)}
           className="input message-page__search"
+          placeholder='Search users'
         /> 
-        {user && 
-          <div onClick={handleSelect}>
-            <img className="message-image" src={user.photoURL}/>
-            <h4>{user.displayName}</h4>
+        {user
+        ?
+          <div className='message__item'>
+            <div className='message__item-content message__item-content_finded' onClick={handleSelect}>
+              <img className="message__image" alt={user.displayName} src={user.photoURL}/>
+              <h4 className='message__name'>{user.displayName}</h4>
+            </div>
           </div>
+        : ''
         }
         {err && <div>Ошибка</div>}
       </div>
-      <div>
-        {chats.map((chat) => 
-          <Link to={`/message/${openDialog(chat[1].userInfo.uid)}`} key={chat[1].userInfo.uid}>
-            <img className="message-image" src={chat[1].userInfo.photoUrl}/>
-            <h2>{chat[1].userInfo.displayName}</h2>
-          </Link>
-        )}
+      <div className='message__list'>
+      {chats.map((chat) => 
+        <Link onClick={() => addUser(chat[1].userInfo)} className='message__item-content' to={`/message/${openDialog(chat[1].userInfo.uid)}`} key={chat[1].userInfo.uid}>
+          <img className="message__image" alt={chat[1].userInfo.displayName} src={chat[1].userInfo.photoUrl}/>
+          <div className='message__about'>
+            <div>
+              <h2 className='message__name'>{chat[1].userInfo.displayName}</h2>
+              {chat[1].lastMessage && <h4>{chat[1].lastMessage.textMessage}</h4>}
+            </div>
+            {chat[1].date && <span>{getDate(chat[1].date.seconds)}</span>}
+          </div>
+        </Link>
+      )}
       </div>
-    </div>
+    </section>
   )
 }
 

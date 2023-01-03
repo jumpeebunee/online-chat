@@ -1,8 +1,6 @@
 import '../styles/pages/mainPage.scss';
 import { useEffect, useState } from 'react';
-import { Navigate } from "react-router-dom";
 import { IPost } from '../types/types';
-import { useAuth } from "../hooks/use-auth";
 import { auth } from '../firebase';
 import { nanoid } from '@reduxjs/toolkit';
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,8 +12,6 @@ import PostsList from '../components/PostsList';
 import PostCreate from '../components/PostCreate';
 
 const MainPage = () => {
-
-  const { isAuth } = useAuth();
 
   const userName = useSelector(getUserName);
   const userImage = useSelector(getUserImage);
@@ -55,16 +51,14 @@ const MainPage = () => {
   });
 
   return (
-    <div className="main__container">
-      {isAuth
-      ? 
-        <div className='main__content'>
-          <PostCreate createNewPost={createNewPost}/>
-          <PostsList posts={posts}/>
-        </div>
-      : <Navigate to='/login'/>
-      }
-    </div>
+    <section className='main-section'>
+      <div className="main__container">
+          <div className='main__content'>
+            <PostCreate createNewPost={createNewPost}/>
+            <PostsList posts={posts}/>
+          </div>
+      </div>
+    </section>
   )
 }
 

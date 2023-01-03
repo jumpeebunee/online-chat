@@ -1,7 +1,53 @@
+.message__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  gap: 20px;
+}
+
+.message__item {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: solid 1px rgba(130, 130, 130, 1);
+}
+
+.message__item-content {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.message__item-content_finded {
+  gap: 20px;
+}
+
 .message-page__search {
   max-width: 660px;
 }
 
-.message-image {
-  max-width: 100px;
+.message__image {
+  width: 100%;
+  max-width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.message__about {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-left: 20px;
+
+  h4 {
+    font-size: 14px;
+    line-height: 160%;
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.message__name {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px
 }
