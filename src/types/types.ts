@@ -32,3 +32,10 @@ export type IPost = {
   date: string,
   body: string,
 }
+
+export type ActiveUser = {
+  displayName: string,
+  photoURL: string,
+  email: string,
+  uid: string,
+}

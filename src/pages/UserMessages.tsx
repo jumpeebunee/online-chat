@@ -42,7 +42,7 @@ const UserMessages = () => {
       if (currentUser.uid) {
         await updateDoc(doc(db, 'usersChats', currentUser.uid), {
           [chatId + '.lastMessage']: {
-            messageClone,
+            textMessage: messageClone,
           },
           [chatId + '.date']: serverTimestamp(),
         })
@@ -50,7 +50,7 @@ const UserMessages = () => {
       if (user) {
         await updateDoc(doc(db, 'usersChats', user), {
           [chatId + '.lastMessage']: {
-            messageClone,
+            textMessage: messageClone,
           },
           [chatId + '.date']: serverTimestamp(),
         })
