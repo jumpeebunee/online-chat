@@ -56,7 +56,7 @@ const MessagePage = () => {
       </div>
       <div className='message__list'>
       {chats.map((chat) => 
-        <MessageItem key={chat[1].date.nanoseconds} openDialog={openDialog} chat={chat[1]}/>
+        <MessageItem key={chat[1].userInfo.uid} openDialog={openDialog} chat={chat[1]}/>
       )}
       </div>
     </section>

@@ -6,7 +6,7 @@
 .app-nav__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
   width: 100%;
   max-width: 150px;
@@ -24,7 +24,7 @@
   a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
@@ -58,12 +58,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: fixed;
+    position: absolute;
     background: #222222;
     height: 48px;
     left: 0;
     right: 0;
     bottom: 0;
+    border-top: 1px solid #828282;
   }
 }
 

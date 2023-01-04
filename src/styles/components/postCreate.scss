@@ -2,13 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 660px;
   width: 100%;
-  background-color: #222222;
-  border: 1px solid #828282;
-  border-radius: 20px;
   gap: 20px;
   padding: 15px 20px;
+  background-color: #222222;
+  border: 1px solid #828282;
+  border-radius: 16px;
 
   input {
     width: 100%;
@@ -24,6 +23,8 @@
 @media (max-width: 450px) {
   .create-post__card {
     gap: 4.44vw;
+    padding: 3.33vw 4.44vw;
+    border-radius: 3.56vw;
   
     input {
       height: 7.11vw;

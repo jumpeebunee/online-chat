@@ -17,7 +17,7 @@ const MessageOpenItem:FC<MessageOpenItemProps> = ({secondUser, item, currentUser
         alt={senderUser ? currentUser.name : secondUser.displayName}
         src={senderUser ? currentUser.photoURL : secondUser.photoUrl}
       />
-      <div>
+      <div className='messages__item-content'>
         <div className='messages__item-header'>
           <h2>{senderUser ? currentUser.name : secondUser.displayName}</h2>
           <span>{getDate(item.date.seconds.toString())}</span>

@@ -1,5 +1,6 @@
 .header {
-  background: #222222;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .header__container {
@@ -20,8 +21,6 @@
 .header__btn {
   display: block;
   height: 48px;
-  padding-left: 15px;
-  padding-right: 15px;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -34,6 +33,12 @@
 }
 
 @media (max-width: 450px) {
+
+  .header {
+    padding-top: 5.33vw;
+    padding-bottom: 5.33vw;
+  }
+
   .header__logo {
     height: 10.67vw;
   
@@ -44,8 +49,6 @@
   
   .header__btn {
     height: 10.67vw;
-    padding-left: 3.33vw;
-    padding-right: 3.33vw;
     font-size: 3.56vw;
     line-height: 4.22vw;
   }

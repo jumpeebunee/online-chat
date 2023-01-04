@@ -20,14 +20,12 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
   const handleSearch = async () => {
     setErr(false);
     const q = query(usersRef, where("displayName", "==", userName));
-
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const findedUser = doc.data();
         if (findedUser) setUser(findedUser);
       });
-      setUserName('');
     } catch (error) {
       setErr(true);
     }

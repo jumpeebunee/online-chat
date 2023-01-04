@@ -38,10 +38,10 @@ const App = () => {
   }, [])
 
   return (
-    <div>
+    <div className="app">
       {!isLoading
       ?
-      <div>
+      <div className="app__content">
         <AppHeader/>
         <main className="main">
           <div className="container main__container">

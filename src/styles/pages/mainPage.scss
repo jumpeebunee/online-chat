@@ -1,3 +1,23 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #010001;
+  padding: 30px;
+}
+
+.app__content {
+  width: 100%;
+  max-width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 40px;
+  position: relative;
+}
+
+
 .main__container {
   display: flex;
   gap: 20px;
@@ -10,7 +30,18 @@
 }
 
 @media(max-width: 824px) {
+
+  .app__content {
+    border-radius: 20px;
+  }
+  
   .main__container {
     gap: 0px;
+  }
+}
+
+@media(max-width: 450px) {
+  .app__content {
+    height: 160vw;
   }
 }
