@@ -9,6 +9,7 @@ interface AppAuthSignupProps {
   userData: IUserData,
   setUserData: Function,
   serverError: string,
+  isLoading: Boolean,
 }
 
 type IErrors = {
@@ -18,7 +19,7 @@ type IErrors = {
   password: boolean,
 }
 
-const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUserData, serverError}) => {
+const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUserData, serverError, isLoading}) => {
 
   const [isErrors, setIsErrors] = useState<IErrors>({firstName: false, lastName: false, email: false, password: false});
 
@@ -93,7 +94,7 @@ const AppAuthSignup:FC <AppAuthSignupProps> = ({createNewUser, userData, setUser
           />
           <input onChange={(e) => testik(e)} type="file" accept="image/png, image/gif, image/jpeg"/>
         </form>
-        <button onClick={() => createUser()} className='btn login__btn'>Sign up</button>
+        <button disabled={isLoading ? true : false} onClick={() => createUser()} className='btn login__btn'>Sign up</button>
         {serverError && <label className='login__label'>{serverError}</label>}
         <span className='login__or'>or</span>
         <Link to='/login' className='btn register-btn'>Sign in</Link>

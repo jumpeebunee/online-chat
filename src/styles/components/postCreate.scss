@@ -8,6 +8,7 @@
   background-color: #222222;
   border: 1px solid #828282;
   border-radius: 16px;
+  margin-bottom: 24px;
 
   input {
     width: 100%;
@@ -22,6 +23,7 @@
 
 @media (max-width: 450px) {
   .create-post__card {
+    margin-bottom: 5.33vw;
     gap: 4.44vw;
     padding: 3.33vw 4.44vw;
     border-radius: 3.56vw;

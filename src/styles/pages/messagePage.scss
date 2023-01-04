@@ -1,7 +1,6 @@
 .message__list {
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
   gap: 24px;
 }
 
@@ -53,6 +52,7 @@
 }
 
 .message-page__search {
+  margin-bottom: 24px;
   padding: 16px 24px;
 }
 
@@ -60,11 +60,11 @@
 @media (max-width: 450px) {
 
   .message__list {
-    margin-top: 5.33vw;
     gap: 5.33vw;
   }
 
   .message-page__search {
+    margin-bottom: 5.33vw;
     padding: 3.56vw 5.33vw;
   }
 

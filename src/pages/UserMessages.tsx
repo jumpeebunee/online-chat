@@ -10,6 +10,7 @@ import { getSecondUser } from '../app/feautures/currentUserSlice';
 import { useSelector } from "react-redux";
 import { IMessage } from '../types/types';
 import MessageOpenItem from '../components/MessageOpenItem';
+import LoadingPosts from '../components/LoadingPosts';
 
 const UserMessages = () => {
 
@@ -21,6 +22,7 @@ const UserMessages = () => {
   const [messages, setMessages] = useState<DocumentData>({message: []});
   const [textMessage, setTextMessage] = useState('');
   const [user, setUser] = useState('');
+  const [isMessages, setIsMessages] = useState(false);
 
   const inputField = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
@@ -62,6 +64,7 @@ const UserMessages = () => {
   }, [messages])
 
   useEffect(() => {
+    setIsMessages(false);
     const id = location.pathname.split('/')[2];
     if (currentUser.uid) {
       setUser(id.replace(currentUser.uid, ''));
@@ -69,6 +72,7 @@ const UserMessages = () => {
     setChatId(id);
     const unsub = onSnapshot(doc(db, "chats", id), (doc) => {
       const currentMessages = doc.data();
+      setIsMessages(true);
       if (currentMessages) setMessages(currentMessages);
     });
     return () => {
@@ -79,8 +83,10 @@ const UserMessages = () => {
   return (
     <section className="main-section">
       <div>
+        {messages.message
+        ?
         <div ref={inputField} className='messages__list'>
-          {messages.message.map((item: IMessage) => 
+          {messages.message.map((item: IMessage) =>   
             <div key={item.date.toString()}>
               {item.senderUser === currentUser.uid 
               ? 
@@ -101,6 +107,8 @@ const UserMessages = () => {
             </div>
           )}
         </div>
+        :
+        <LoadingPosts/>}
         <input 
           onKeyDown={(e) => handleSend(e)}
           onChange={(e) => setTextMessage(e.target.value)}

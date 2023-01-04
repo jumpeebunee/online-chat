@@ -1,0 +1,23 @@
+
+.loading__posts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.loading__post {
+  height: 128px;
+  border-radius: 16px;
+  background: #222222;
+}
+
+@media (max-width: 450px) {
+  .loading__posts {
+    gap: 5.33vw;
+  }
+  
+  .loading__post {
+    height: 28.44vw;
+    border-radius: 3.56vw;
+  }
+}

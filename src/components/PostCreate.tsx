@@ -1,5 +1,5 @@
 import '../styles/components/postCreate.scss';
-import {FC, useState} from 'react'
+import {FC, useState, KeyboardEvent} from 'react'
 
 interface PostCreateProps {
   createNewPost: Function,
@@ -16,9 +16,13 @@ const PostCreate:FC<PostCreateProps> = ({createNewPost}) => {
     }
   }
 
+  const handleKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') createPost();
+  }
+
   return (
     <div className='create-post__card'>
-      <input onChange={(e) => setPostBody(e.target.value)} value={postBody} className='create-post__card-input' type="text" placeholder='Whats new?'/>
+      <input onKeyDown={(e) => handleKey(e)} onChange={(e) => setPostBody(e.target.value)} value={postBody} className='create-post__card-input' type="text" placeholder='Whats new?'/>
       <button className='create-post__card-button small-btn' onClick={() => createPost()}>Publish</button>
     </div>
   )

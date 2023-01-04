@@ -7,6 +7,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AppHeader from "./components/AppHeader";
 import AppNav from "./components/AppNav";
 import { IUser } from "./types/types";
+import LoadingPage from "./pages/LoadingPage";
 
 const App = () => {
 
@@ -29,7 +30,6 @@ const App = () => {
             photoURL: user.photoURL as string,
           }
         dispatch(setUser(data));
-        navigate('/');
       } else {
         navigate('/login');
       }
@@ -56,8 +56,7 @@ const App = () => {
         </main>
       </div>
       : 
-      <main className="main">
-      </main>
+        <LoadingPage/>
       }
     </div>
   )

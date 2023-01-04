@@ -10,6 +10,7 @@ import { collection, addDoc, onSnapshot  } from "firebase/firestore";
 import { db } from '../firebase';
 import PostsList from '../components/PostsList';
 import PostCreate from '../components/PostCreate';
+import LoadingPosts from '../components/LoadingPosts';
 
 const MainPage = () => {
 
@@ -17,14 +18,17 @@ const MainPage = () => {
   const userImage = useSelector(getUserImage);
 
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [isPosts, setIsPosts] = useState(false);
   
   useEffect(() => {
+    setIsPosts(false);
     const unsub = onSnapshot(collection(db, "posts"), doc => {
         const posts: IPost[] = [];
         doc.forEach((d: any) => {
           posts.push(d.data())
         })
-        posts.sort((a,b) => +b.date - +a.date)
+        posts.sort((a,b) => +b.date - +a.date);
+        setIsPosts(true);
         setPosts([...posts]);
         return () => {
           unsub();
@@ -55,7 +59,10 @@ const MainPage = () => {
       <div className="main__container">
           <div className='main__content'>
             <PostCreate createNewPost={createNewPost}/>
-            <PostsList posts={posts}/>
+            {isPosts
+            ? <PostsList posts={posts}/>
+            : <LoadingPosts/>
+            }
           </div>
       </div>
     </section>

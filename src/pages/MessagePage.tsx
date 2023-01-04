@@ -8,6 +8,7 @@ import { ActiveUser } from '../types/types';
 import MessageSearch from '../components/MessageSearch';
 import MessageFindedUser from '../components/MessageFindedUser';
 import MessageItem from '../components/MessageItem';
+import LoadingPosts from '../components/LoadingPosts';
 
 type IData = DocumentData | null;
 
@@ -15,6 +16,7 @@ const MessagePage = () => {
   const [user, setUser] = useState<IData>();
   const [err, setErr] = useState(false);
   const [chats, setChats] = useState<DocumentData[]>([]);
+  const [isMessages, setIsMessages] = useState(false);
 
   const currentUser = useSelector(getCurrentUser);
 
@@ -25,11 +27,13 @@ const MessagePage = () => {
   }
 
   useEffect(() => {
+    setIsMessages(false);
     const unsub = onSnapshot(doc(db, "usersChats", `${currentUser.uid}`), (doc) => {
       const chatsData = doc.data();
       if (chatsData) {
-        setChats(Object.entries(chatsData as DocumentData[]));
+        setChats(Object.entries(chatsData as DocumentData[]).sort((a,b) => b[1].date.seconds - a[1].date.seconds));
       };
+      setIsMessages(true);
     });
     return () => {
       unsub();
@@ -54,11 +58,15 @@ const MessagePage = () => {
         }
         {err && <div>Unknown Error</div>}
       </div>
+      {isMessages
+      ?
       <div className='message__list'>
-      {chats.map((chat) => 
-        <MessageItem key={chat[1].userInfo.uid} openDialog={openDialog} chat={chat[1]}/>
-      )}
+        {chats.map((chat) => 
+          <MessageItem key={chat[1].userInfo.uid} openDialog={openDialog} chat={chat[1]}/>
+        )}
       </div>
+      : <LoadingPosts/>
+      }
     </section>
   )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { auth, storage } from '../firebase';
 import { doc, setDoc } from "firebase/firestore"; 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -12,11 +13,15 @@ import { db } from '../firebase';
 const AuthPage = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState<IUserData>({firstName: '', lastName: '', email: '', password: '', image: null});
   const [serverError, setServerError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const createNewUser = async () => {
+
+    setIsLoading(true);
 
     const displayName = `${userData.firstName.trim()} ${userData.lastName.trim()}`;
     const email = userData.email;
@@ -61,16 +66,25 @@ const AuthPage = () => {
     }
     await setDoc(doc(db, "usersChats", res.user.uid), {});
     dispatch(updateName(displayName));
+
+    setIsLoading(false);
+    navigate('/');
   }
 
   return (
     <div className='container login__container'>
+      {isLoading
+      ?
+      <div className='login__loading'></div>
+      :
       <AppAuthSignup
         createNewUser={createNewUser}
         userData={userData}
         setUserData={setUserData}
         serverError={serverError}
+        isLoading={isLoading}
       />
+      }
     </div>
   )
 }
