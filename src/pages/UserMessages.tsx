@@ -1,4 +1,5 @@
 import '../styles/components/userMessages.scss';
+import React from 'react'
 import { useState, useEffect, KeyboardEvent } from "react"
 import { useLocation } from "react-router-dom";
 import { arrayUnion, doc, DocumentData, onSnapshot, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
@@ -20,6 +21,8 @@ const UserMessages = () => {
   const [messages, setMessages] = useState<DocumentData>({message: []});
   const [textMessage, setTextMessage] = useState('');
   const [user, setUser] = useState('');
+
+  const inputField = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const handleSend = async(e:KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter')  {
@@ -53,6 +56,12 @@ const UserMessages = () => {
   }
 
   useEffect(() => {
+    if (inputField.current) {
+      inputField.current.scrollTop = inputField.current.scrollHeight;
+    }
+  }, [messages])
+
+  useEffect(() => {
     const id = location.pathname.split('/')[2];
     if (currentUser.uid) {
       setUser(id.replace(currentUser.uid, ''));
@@ -70,7 +79,7 @@ const UserMessages = () => {
   return (
     <section className="main-section">
       <div>
-        <div className='messages__list'>
+        <div ref={inputField} className='messages__list'>
           {messages.message.map((item: IMessage) => 
             <div key={item.date.toString()}>
               {item.senderUser === currentUser.uid 

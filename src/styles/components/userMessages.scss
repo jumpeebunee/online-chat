@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 35px;
   padding-bottom: 50px;
+  overflow-y: scroll;
+  height: 600px;
 }
 
 .messages__item {
