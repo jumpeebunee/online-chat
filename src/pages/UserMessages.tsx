@@ -2,18 +2,20 @@ import '../styles/components/userMessages.scss';
 import React from 'react'
 import { useState, useEffect, KeyboardEvent } from "react"
 import { useLocation } from "react-router-dom";
-import { arrayUnion, doc, DocumentData, onSnapshot, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import { arrayUnion, doc, getDoc, DocumentData, onSnapshot, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 import { getCurrentUser } from "../app/feautures/userSlice";
 import { getSecondUser } from '../app/feautures/currentUserSlice';
-import { useSelector } from "react-redux";
 import { IMessage } from '../types/types';
 import MessageOpenItem from '../components/MessageOpenItem';
 import LoadingPosts from '../components/LoadingPosts';
+import { addCurrentUser } from '../app/feautures/currentUserSlice';
 
 const UserMessages = () => {
 
+  const dispatch = useDispatch();
   const location = useLocation();
   const currentUser = useSelector(getCurrentUser);
   const secondUser = useSelector(getSecondUser);
@@ -66,24 +68,42 @@ const UserMessages = () => {
   useEffect(() => {
     setIsMessages(false);
     const id = location.pathname.split('/')[2];
+    const secondUserId = id.replace(currentUser.uid, '');
     if (currentUser.uid) {
-      setUser(id.replace(currentUser.uid, ''));
+      setUser(secondUserId);
     }
     setChatId(id);
     const unsub = onSnapshot(doc(db, "chats", id), (doc) => {
       const currentMessages = doc.data();
-      setIsMessages(true);
       if (currentMessages) setMessages(currentMessages);
     });
+    if (secondUser.displayName.length >= 1) {
+      setIsMessages(true);
+    } else {
+      getUser(secondUserId);
+    }
     return () => {
       unsub();
     }
   },[]);
 
+  const getUser = async(id: string) => {
+    const docRef = doc(db, "users", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const {displayName, photoUrl, uid} = docSnap.data();
+      dispatch(addCurrentUser({displayName, photoUrl, uid}));
+      setIsMessages(true);
+    } else {
+      console.log("No such document!");
+    }
+  }
+
   return (
     <section className="main-section">
       <div>
-        {messages.message
+        {isMessages
         ?
         <div ref={inputField} className='messages__list'>
           {messages.message.map((item: IMessage) =>   

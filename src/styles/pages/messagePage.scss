@@ -6,6 +6,7 @@
 
 .message__item {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: solid 1px rgba(130, 130, 130, 1);
 }
@@ -52,10 +53,27 @@
 }
 
 .message-page__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  padding: 15px 20px;
+  background-color: #222222;
+  border: 1px solid #828282;
+  border-radius: 16px;
   margin-bottom: 24px;
-  padding: 16px 24px;
 }
 
+.message-page__search-input {
+  width: 100%;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.message-page__search-btn {
+  flex-shrink: 0;
+}
 
 @media (max-width: 450px) {
 
@@ -64,12 +82,19 @@
   }
 
   .message-page__search {
-    margin-bottom: 5.33vw;
-    padding: 3.56vw 5.33vw;
+    gap: 4.44vw;
+    padding: 3.33vw 4.44vw;
+    border-radius: 3.56vw;
+    margin-bottom: 3.56vw;
+  }
+  
+  .message-page__search-input {
+    font-size: 3.56vw;
   }
 
   .message__item {
     margin-top: 4.44vw;
+    margin-bottom: 4.44vw;
     padding-bottom: 4.44vw;
   }
   

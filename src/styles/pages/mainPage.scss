@@ -31,8 +31,12 @@
 
 @media(max-width: 824px) {
 
+  .app {
+    padding: 0px;
+  }
+
   .app__content {
-    border-radius: 20px;
+    border-radius: 10px;
   }
   
   .main__container {

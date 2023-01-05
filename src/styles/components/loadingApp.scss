@@ -1,51 +1,5 @@
-.app-loading__item {
-  width: 100%;
-  max-width: 150px;
-  height: 35px;
-  background-color: #222222;
-  border-radius: 4px;
-}
-
-.app-loading__content {
-  margin-bottom: 24px;
-  background-color: #222222;
-} 
-
-.app-loading__ {
-  height: 64px;
-  border-radius: 16px;
-}
-.app-loading__profile {
-  height: 64px;
-  border-radius: 16px;
-}
-.app-loading__messages {
-  height: 36px;
-  border-radius: 8px;
-}
-
-
-@media (max-width: 450px) {
-  .app-loading__item {
-    max-width: 33.33vw;
-    height: 7.78vw;
-    border-radius: 0.89vw;
-  }
-  
-  .app-loading__content {
-    margin-bottom: 5.33vw;
-  } 
-  
-  .app-loading__ {
-    height: 14.22vw;
-    border-radius: 3.56vw;
-  }
-  .app-loading__profile {
-    height: 14.22vw;
-    border-radius: 3.56vw;
-  }
-  .app-loading__messages {
-    height: 8vw;
-    border-radius: 1.78vw;
-  }  
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

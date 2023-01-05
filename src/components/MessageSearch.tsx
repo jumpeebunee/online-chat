@@ -18,13 +18,14 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
   }
 
   const handleSearch = async () => {
+    setUser('');
     setErr(false);
     const q = query(usersRef, where("displayName", "==", userName));
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const findedUser = doc.data();
-        if (findedUser) setUser(findedUser);
+        if (findedUser) setUser(findedUser)
       });
     } catch (error) {
       setErr(true);
@@ -32,14 +33,17 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
   }
 
   return (
-    <input
-      type="text"
-      value={userName}
-      onChange={(e) => setUserName(e.target.value)}
-      onKeyDown={(e) => handleKey(e)}
-      className="input message-page__search"
-      placeholder='Search users'
-    /> 
+    <div className="message-page__search">
+      <input
+        type="text"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+        onKeyDown={(e) => handleKey(e)}
+        className="message-page__search-input"
+        placeholder='Search users'
+      /> 
+      <button className="small-btn message-page__search-btn">Find user</button>
+    </div>
   )
 }
 

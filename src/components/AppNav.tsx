@@ -10,17 +10,17 @@ const AppNav = () => {
     {
       path: '/',
       title: 'Home',
-      icon: './home.svg'
+      icon: '../home.svg'
     },
-    {
-      path: '/profile',
-      title: 'Profile',
-      icon: './profile.svg'
-    },
+    // {
+    //   path: '/profile',
+    //   title: 'Profile',
+    //   icon: '../profile.svg'
+    // },
     {
       path: '/messages',
       title: 'Messages',
-      icon: './messages.svg'
+      icon: '../messages.svg'
     },
   ];
 
