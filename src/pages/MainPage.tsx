@@ -1,13 +1,12 @@
 import '../styles/pages/mainPage.scss';
 import { useEffect, useState } from 'react';
-import { IPost } from '../types/types';
-import { auth } from '../firebase';
-import { nanoid } from '@reduxjs/toolkit';
-import { onAuthStateChanged } from "firebase/auth";
 import { useSelector } from 'react-redux';
-import { getUserName, getUserImage } from '../app/feautures/userSlice';
+import { nanoid } from '@reduxjs/toolkit';
 import { collection, addDoc, onSnapshot  } from "firebase/firestore"; 
-import { db } from '../firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from '../firebase';
+import { IPost } from '../types/types';
+import { getUserName, getUserImage } from '../app/feautures/userSlice';
 import PostsList from '../components/PostsList';
 import PostCreate from '../components/PostCreate';
 import LoadingPosts from '../components/LoadingPosts';
@@ -21,6 +20,7 @@ const MainPage = () => {
   const [isPosts, setIsPosts] = useState(false);
   const [isError, setIsError] = useState('');
   
+  // GetPosts
   useEffect(() => {
     setIsPosts(false);
     const unsub = onSnapshot(collection(db, "posts"), doc => {
@@ -52,8 +52,9 @@ const MainPage = () => {
     }
   }
 
+  // If auth changed
   onAuthStateChanged(auth, (user) => {
-    if (!user) window.location.pathname = '/login';
+    if (!user) window.location.pathname = '/';
   });
 
   return (

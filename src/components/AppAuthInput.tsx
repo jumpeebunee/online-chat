@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { ILogin, IUserData } from '../types/types'
 import AppInput from './UI/AppInput/AppInput'
 

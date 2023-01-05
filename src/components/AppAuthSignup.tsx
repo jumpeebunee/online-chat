@@ -1,6 +1,6 @@
+import '../styles/components/appAuthSign.scss';
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/components/appAuthSign.scss';
 import { IUserData } from '../types/types';
 import AppAuthInput from './AppAuthInput';
 

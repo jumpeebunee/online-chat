@@ -12,11 +12,11 @@ const AppNav = () => {
       title: 'Home',
       icon: '../home.svg'
     },
-    // {
-    //   path: '/profile',
-    //   title: 'Profile',
-    //   icon: '../profile.svg'
-    // },
+    {
+      path: '/profile',
+      title: 'Profile',
+      icon: '../profile.svg'
+    },
     {
       path: '/messages',
       title: 'Messages',

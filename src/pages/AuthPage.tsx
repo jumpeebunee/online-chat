@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { auth, storage } from '../firebase';
+import { auth } from '../firebase';
 import { doc, setDoc } from "firebase/firestore"; 
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { createUserWithEmailAndPassword, updateProfile, } from 'firebase/auth';
 import { updateImage, updateName } from '../app/feautures/userSlice';
 import { IUserData } from '../types/types';
 import AppAuthSignup from '../components/AppAuthSignup';
 import { db } from '../firebase';
+import getRandomNumber from '../helpers/getRandomNumber';
 
 const AuthPage = () => {
 
@@ -28,33 +28,12 @@ const AuthPage = () => {
     const file = userData.image ? userData.image : 'https://yakovgo.gosuslugi.ru/netcat_files/8/110/headshot_2_.jpg';
 
     const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+    const getImage = `https://picsum.photos/id/${getRandomNumber()}/200/300`;
 
-    const storageRef = ref(storage, userData.email);
-
-    if (file instanceof File) {
-      await uploadBytesResumable(storageRef, file).then(() => {
-        getDownloadURL(storageRef).then(async(downloadURL) => {
-          try {
-            await updateProfile(res.user, {
-              displayName,
-              photoURL: downloadURL,
-            });
-            await setDoc(doc(db, "users", res.user.uid), {
-              uid: res.user.uid,
-              displayName,
-              email,
-              photoURL: downloadURL,
-            });
-            dispatch(updateImage(downloadURL));
-          } catch(e) {  
-            setServerError('Unknown error');
-          }
-        })
-      });
-    } else {
+    try {
       await updateProfile(res.user, {
         displayName,
-        photoURL: file,
+        photoURL: getImage,
       });
       await setDoc(doc(db, "users", res.user.uid), {
         uid: res.user.uid,
@@ -62,13 +41,16 @@ const AuthPage = () => {
         email,
         photoURL: file,
       });
-      dispatch(updateImage(file));
+      dispatch(updateImage(getImage));
+  
+      await setDoc(doc(db, "usersChats", res.user.uid), {});
+      dispatch(updateName(displayName));
+  
+      setIsLoading(false);
+      navigate('/');
+    } catch (error) {
+      setServerError('Something went wrong');
     }
-    await setDoc(doc(db, "usersChats", res.user.uid), {});
-    dispatch(updateName(displayName));
-
-    setIsLoading(false);
-    navigate('/');
   }
 
   return (

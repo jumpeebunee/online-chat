@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { IUser } from "./types/types";
 import { setUser } from './app/feautures/userSlice';
 import AppNavigation from "./components/AppNavigation"
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import AppHeader from "./components/AppHeader";
 import AppNav from "./components/AppNav";
-import { IUser } from "./types/types";
 import LoadingPage from "./pages/LoadingPage";
 
 const App = () => {
