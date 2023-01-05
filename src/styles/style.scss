@@ -76,9 +76,10 @@
   border-radius: 20px;
 }
 
-.you {
-  text-align: right;
-  color: red;
+.error-message {
+  display: block;
+  margin-top: 5px;
+  color: #F15857;
 }
 
 @media (max-width: 824px) {
@@ -135,4 +136,8 @@
     padding: 5.56vw 6.67vw;
     border-radius: 4.44vw;
   }  
+
+  .error-message {
+    font-size: 3.11vw;
+  }
 }

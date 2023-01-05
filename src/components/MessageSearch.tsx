@@ -19,7 +19,7 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
 
   const handleSearch = async () => {
     setUser('');
-    setErr(false);
+    setErr('');
     const q = query(usersRef, where("displayName", "==", userName));
     try {
       const querySnapshot = await getDocs(q);
@@ -28,7 +28,7 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
         if (findedUser) setUser(findedUser)
       });
     } catch (error) {
-      setErr(true);
+      setErr(error);
     }
   }
 
@@ -42,7 +42,7 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
         className="message-page__search-input"
         placeholder='Search users'
       /> 
-      <button className="small-btn message-page__search-btn">Find user</button>
+      <button onClick={handleSearch} className="small-btn message-page__search-btn">Find user</button>
     </div>
   )
 }

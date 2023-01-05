@@ -14,7 +14,7 @@ type IData = DocumentData | null;
 
 const MessagePage = () => {
   const [user, setUser] = useState<IData>();
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState('');
   const [chats, setChats] = useState<DocumentData[]>([]);
   const [isMessages, setIsMessages] = useState(false);
 
@@ -47,12 +47,14 @@ const MessagePage = () => {
           setUser={setUser}
           setErr={setErr}
         />
+        {err && <label className='error-message'>{err}</label>}
         {user
         ?
           <MessageFindedUser
             user={user as ActiveUser}
             currentUser={currentUser}
             setUser={setUser}
+            setErr={setErr}
           />
         : ''
         }

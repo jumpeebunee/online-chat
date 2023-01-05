@@ -19,6 +19,7 @@ const MainPage = () => {
 
   const [posts, setPosts] = useState<IPost[]>([]);
   const [isPosts, setIsPosts] = useState(false);
+  const [isError, setIsError] = useState('');
   
   useEffect(() => {
     setIsPosts(false);
@@ -37,6 +38,7 @@ const MainPage = () => {
   },[]);
 
   const createNewPost = async (postBody: string) => {
+    setIsError('');
     try {
       await addDoc(collection(db, "posts"), {
         id: nanoid(),
@@ -46,7 +48,7 @@ const MainPage = () => {
         body: postBody,
       });
     } catch (e) {
-      console.error("Error adding document: ", e);
+      setIsError('Error adding post');
     }
   }
 
@@ -58,7 +60,8 @@ const MainPage = () => {
     <section className='main-section'>
       <div className="main__container">
           <div className='main__content'>
-            <PostCreate createNewPost={createNewPost}/>
+            <PostCreate createNewPost={createNewPost} setIsError={setIsError}/>
+            {isError && <label className='error-message'>{isError}</label>}
             {isPosts
             ? <PostsList posts={posts}/>
             : <LoadingPosts/>

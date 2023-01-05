@@ -3,16 +3,20 @@ import {FC, useState, KeyboardEvent} from 'react'
 
 interface PostCreateProps {
   createNewPost: Function,
+  setIsError: Function,
 }
 
-const PostCreate:FC<PostCreateProps> = ({createNewPost}) => {
+const PostCreate:FC<PostCreateProps> = ({createNewPost, setIsError}) => {
 
   const [postBody, setPostBody] = useState('');
 
   const createPost = () => {
+    setIsError('');
     if (postBody.length > 1) {
       createNewPost(postBody);
       setPostBody('');
+    } else {
+      setIsError('The post is too short');
     }
   }
 

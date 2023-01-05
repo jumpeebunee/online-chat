@@ -8,11 +8,13 @@ interface MessageFindedUserProps {
   user: ActiveUser,
   setUser: Function,
   currentUser: IUser,
+  setErr: Function,
 }
-const MessageFindedUser:FC<MessageFindedUserProps> = ({user, setUser, currentUser}) => {
+const MessageFindedUser:FC<MessageFindedUserProps> = ({user, setUser, currentUser, setErr}) => {
 
   const handleSelect = async () => {
     setUser('');
+    setErr('');
     if (user && currentUser.uid) {
       const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
       try {
@@ -41,6 +43,7 @@ const MessageFindedUser:FC<MessageFindedUserProps> = ({user, setUser, currentUse
           [combinedId + '.date']: serverTimestamp(),
         }) 
       } catch (error) {
+        setErr(error);
       }
     }
   }

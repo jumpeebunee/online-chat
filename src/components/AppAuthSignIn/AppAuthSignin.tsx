@@ -59,7 +59,7 @@ const AppAuthSignin:FC<AppAuthSigninProps> = ({userData, setUserData, createNewU
           />
         </form>
         <button onClick={() => loginToProfile()} className='btn login__btn'>Sign in</button>
-        {serverError && <label className='login__label'>{serverError}</label>}
+        {serverError && <label className='login__label error-message'>{serverError}</label>}
         <span className='login__or'>or</span>
         <Link to='/auth' className='btn register-btn'>Sign up</Link>
       </div>
