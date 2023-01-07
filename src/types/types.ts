@@ -33,6 +33,7 @@ export type IPost = {
   img: string,
   date: string,
   body: string,
+  uid: string,
 }
 
 export type ActiveUser = {

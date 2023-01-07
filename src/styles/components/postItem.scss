@@ -8,6 +8,13 @@
 
 .post-card__header {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.post-card__header-content {
+    display: flex;
   align-items: center;
 
   img {
@@ -41,6 +48,41 @@
   }
 }
 
+.post-card__modal-btn {
+  width: 30px;
+  height: 8px;
+  background-image: url(../../assets/post-dots.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: contain;
+}
+
+.post-card__modal-content {
+  width: 174px;
+  padding: 16px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  opacity: 0;
+  visibility: hidden;
+  background: #292929;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  transition: all ease .4s;
+}
+
+.post-card__modal-content_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.post-card__modal-content-btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  background-color: transparent;
+}
+
 @media (max-width: 450px) {
   .post-card__item {
     padding: 5.56vw 6.67vw;
@@ -71,5 +113,22 @@
       font-size: 2.67vw;
       line-height: 3.11vw;
     }
+  }
+
+  .post-card__modal-btn {
+    width: 6.67vw;
+    height: 1.78vw;
+  }
+
+  .post-card__modal-content {
+    width: 38.67vw;
+    padding: 3.56vw;
+    top: 6.67vw;
+    box-shadow: 0.89vw 0.89vw 0.89vw rgba(0, 0, 0, 0.25);
+    border-radius: 2.22vw;
+  }
+
+  .post-card__modal-content-btn {
+    font-size: 3.56vw;
   }
 }

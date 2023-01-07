@@ -25,12 +25,11 @@ const AuthPage = () => {
 
     const displayName = `${userData.firstName.trim()} ${userData.lastName.trim()}`;
     const email = userData.email;
-    const file = userData.image ? userData.image : 'https://yakovgo.gosuslugi.ru/netcat_files/8/110/headshot_2_.jpg';
-
-    const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
-    const getImage = `https://picsum.photos/id/${getRandomNumber()}/200/300`;
 
     try {
+      const res = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
+      const getImage = `https://picsum.photos/id/${getRandomNumber()}/200/300`;
+
       await updateProfile(res.user, {
         displayName,
         photoURL: getImage,
@@ -39,7 +38,7 @@ const AuthPage = () => {
         uid: res.user.uid,
         displayName,
         email,
-        photoURL: file,
+        photoURL: getImage,
       });
       dispatch(updateImage(getImage));
   
@@ -50,6 +49,7 @@ const AuthPage = () => {
       navigate('/');
     } catch (error) {
       setServerError('Something went wrong');
+      setIsLoading(false);
     }
   }
 

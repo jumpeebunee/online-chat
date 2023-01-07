@@ -2,19 +2,18 @@ import '../styles/pages/mainPage.scss';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { collection, addDoc, onSnapshot  } from "firebase/firestore"; 
+import { collection, onSnapshot, setDoc, doc  } from "firebase/firestore"; 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from '../firebase';
 import { IPost } from '../types/types';
-import { getUserName, getUserImage } from '../app/feautures/userSlice';
+import { getCurrentUser } from '../app/feautures/userSlice';
 import PostsList from '../components/PostsList';
 import PostCreate from '../components/PostCreate';
 import LoadingPosts from '../components/LoadingPosts';
 
 const MainPage = () => {
 
-  const userName = useSelector(getUserName);
-  const userImage = useSelector(getUserImage);
+  const currentUser = useSelector(getCurrentUser);
 
   const [posts, setPosts] = useState<IPost[]>([]);
   const [isPosts, setIsPosts] = useState(false);
@@ -39,13 +38,15 @@ const MainPage = () => {
 
   const createNewPost = async (postBody: string) => {
     setIsError('');
+    const postId = nanoid();
     try {
-      await addDoc(collection(db, "posts"), {
-        id: nanoid(),
-        name: userName,
-        img: userImage,
+      await setDoc(doc(db, "posts", postId), {
+        id: postId,
+        name: currentUser.name,
+        img: currentUser.photoURL,
         date: Date.now().toString(),
         body: postBody,
+        uid: currentUser.uid,
       });
     } catch (e) {
       setIsError('Error adding post');
