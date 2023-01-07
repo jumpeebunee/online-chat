@@ -1,5 +1,15 @@
-.box{
+.box {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+@media (max-width: 450px) {
+  .box {
+    img {
+      width: 55.56vw;
+      height: 55.56vw;
+    }
+  }
 }

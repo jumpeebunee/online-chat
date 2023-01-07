@@ -3,9 +3,10 @@ import { FC, useState } from "react"
 import { IPost } from "../types/types"
 import {formatDistanceToNow } from 'date-fns'
 import { useSelector } from 'react-redux';
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../firebase';
 import { getCurrentUser } from '../app/feautures/userSlice';
+import LikesBtn from './UI/LikesBtn/LikesBtn';
 interface PostItemProps {
   post: IPost,
 }
@@ -41,6 +42,20 @@ const PostItem:FC<PostItemProps> = ({post}) => {
       console.log(error);
     }
   }
+
+  const handleLike = async() => {
+    const postsRef = doc(db, "posts", post.id);
+
+    if (post.likes.includes(currentUser.uid)) {
+      await updateDoc(postsRef, {
+        likes: arrayRemove(currentUser.uid),
+      });
+    } else {
+      await updateDoc(postsRef, {
+        likes: arrayUnion(currentUser.uid),
+      });
+    }
+  }
   
   return (
     <li className='card' key={post.id}>
@@ -69,6 +84,11 @@ const PostItem:FC<PostItemProps> = ({post}) => {
         }
       </div>
       <p className='post-card__body'>{post.body}</p>
+      <LikesBtn
+        handleLike={handleLike}
+        likes={post.likes.length}
+        isActive={post.likes.includes(currentUser.uid)}
+      />
     </li>
   )
 }

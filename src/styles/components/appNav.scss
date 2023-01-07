@@ -20,6 +20,7 @@
 .app-nav__item {
   padding: 8px 10px;
   border-radius: 4px;
+  transition: background ease .4s;
 
   a {
     display: flex;
@@ -29,6 +30,10 @@
     font-size: 16px;
     line-height: 19px;
     background: transparent;
+  }
+
+  &:hover {
+    background: #222222;
   }
 }
 

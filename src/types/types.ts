@@ -34,6 +34,7 @@ export type IPost = {
   date: string,
   body: string,
   uid: string,
+  likes: string[],
 }
 
 export type ActiveUser = {

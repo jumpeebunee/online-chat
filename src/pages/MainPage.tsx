@@ -47,6 +47,7 @@ const MainPage = () => {
         date: Date.now().toString(),
         body: postBody,
         uid: currentUser.uid,
+        likes: [],
       });
     } catch (e) {
       setIsError('Error adding post');
