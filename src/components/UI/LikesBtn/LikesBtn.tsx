@@ -8,12 +8,11 @@ interface LikesBtnProps {
 }
 
 const LikesBtn:FC<LikesBtnProps> = ({handleLike, likes, isActive}) => {
-  console.log(isActive)
   return (
     <button 
       className={isActive ? [cl.likesBtn, cl.likesBtnActive].join(' ') : cl.likesBtn}
       onClick={handleLike}>
-      <span   className={isActive ? [cl.likesBtnImg, cl.likesBtnImgActive].join(' ') : cl.likesBtnImg}></span>
+      <span  className={isActive ? [cl.likesBtnImg, cl.likesBtnImgActive].join(' ') : cl.likesBtnImg}></span>
       {likes}
     </button>
   )

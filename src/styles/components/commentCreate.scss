@@ -1,0 +1,46 @@
+.comment__create {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.comment__create-image {
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.comment__create-btn {
+  width: 26px;
+  height: 22px;
+  margin-left: 18px;
+  background-image: url(../../assets/comment-send.svg);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: opacity ease .4s;
+}
+
+.comment__create-btn:disabled {
+  opacity: .2;
+}
+
+@media(max-width: 450px) {
+  .comment__create {
+    margin-top: 6.67vw;
+  }
+  
+  .comment__create-image {
+    width: 8vw;
+    height: 8vw;
+    margin-right: 2.22vw;
+  }
+  
+  .comment__create-btn {
+    width: 5.78vw;
+    height: 4.89vw;
+    margin-left: 4vw;
+  }
+}

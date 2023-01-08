@@ -48,6 +48,7 @@ const MainPage = () => {
         body: postBody,
         uid: currentUser.uid,
         likes: [],
+        comments: [],
       });
     } catch (e) {
       setIsError('Error adding post');

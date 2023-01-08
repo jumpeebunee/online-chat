@@ -28,8 +28,8 @@ const UserMessages = () => {
 
   const inputField = React.useRef() as React.MutableRefObject<HTMLDivElement>;
 
-  const handleSend = async(e:KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter')  {
+  const handleSend = async() => {
+    if (textMessage.length >= 1)  {
       const messageClone = textMessage;
       setTextMessage('');
       await updateDoc(doc(db, 'chats', chatId), {
@@ -57,6 +57,10 @@ const UserMessages = () => {
         })
       }
     }
+  }
+
+  const handleClick = (e:KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') handleSend();
   }
 
   useEffect(() => {
@@ -129,14 +133,21 @@ const UserMessages = () => {
         </div>
         :
         <LoadingPosts/>}
-        <input 
-          onKeyDown={(e) => handleSend(e)}
-          onChange={(e) => setTextMessage(e.target.value)}
-          value={textMessage}
-          className="input"
-          type="text"
-          placeholder="message"
-        />
+        <div className='messages__form'>
+          <input 
+            onKeyDown={(e) => handleClick(e)}
+            onChange={(e) => setTextMessage(e.target.value)}
+            value={textMessage}
+            className="input"
+            type="text"
+            placeholder="message"
+          />
+          <button 
+            disabled={textMessage.length >= 1 ? false : true}
+            onClick={handleSend}
+            className='messages__form-btn'>
+          </button>
+        </div>
       </div>
     </section>
   )

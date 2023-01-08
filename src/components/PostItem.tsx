@@ -3,10 +3,12 @@ import { FC, useState } from "react"
 import { IPost } from "../types/types"
 import {formatDistanceToNow } from 'date-fns'
 import { useSelector } from 'react-redux';
-import { doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc, arrayUnion, arrayRemove, Timestamp } from "firebase/firestore";
 import { db } from '../firebase';
 import { getCurrentUser } from '../app/feautures/userSlice';
 import LikesBtn from './UI/LikesBtn/LikesBtn';
+import CommentsList from './CommentsList';
+import CommentCreate from './CommentCreate';
 interface PostItemProps {
   post: IPost,
 }
@@ -14,7 +16,9 @@ interface PostItemProps {
 const PostItem:FC<PostItemProps> = ({post}) => {
 
   const currentUser = useSelector(getCurrentUser);
+
   const [isOpen, setIsOpen] = useState(false);
+  const [comment, setComment] = useState('');
 
   const getDate = (date:string) => {
     const validDate = new Date(+date);  
@@ -89,6 +93,10 @@ const PostItem:FC<PostItemProps> = ({post}) => {
         likes={post.likes.length}
         isActive={post.likes.includes(currentUser.uid)}
       />
+      <div className='post-card__comments'>
+        <CommentsList post={post}/>
+        <CommentCreate post={post}/>
+      </div>
     </li>
   )
 }

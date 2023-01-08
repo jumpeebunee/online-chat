@@ -27,6 +27,12 @@ export type IUserData = {
   image: null | File
 }
 
+export type IComment = {
+  user: IUser,
+  body: string,
+  date: {nanoseconds: string, seconds: string},
+}
+
 export type IPost = {
   id: string,
   name: string,
@@ -35,6 +41,7 @@ export type IPost = {
   body: string,
   uid: string,
   likes: string[],
+  comments: IComment[],
 }
 
 export type ActiveUser = {

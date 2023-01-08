@@ -22,6 +22,7 @@
 }
 
 .messages__img {
+  flex-shrink: 0;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -52,6 +53,25 @@
   margin-top: 5px;
   font-size: 14px;
   line-height: 160%;
+}
+
+.messages__form {
+  display: flex;
+  align-items: center;
+}
+
+.messages__form-btn {
+  width: 26px;
+  height: 22px;
+  margin-left: 18px;
+  background-image: url(../../assets/comment-send.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+
+  &:disabled {
+    opacity: .2;
+  }
 }
 
 @media (max-width: 450px) {
@@ -87,5 +107,12 @@
   .messages__item-description {
     margin-top: 1.11vw;
     font-size: 3.11vw;
+  }
+
+  
+  .messages__form-btn {
+    width: 5.78vw;
+    height: 4.89vw;
+    margin-left: 4vw;
   }
 }
