@@ -1,7 +1,7 @@
 import '../styles/components/userMessages.scss';
 import React from 'react'
 import { useState, useEffect, KeyboardEvent } from "react"
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { arrayUnion, doc, getDoc, DocumentData, onSnapshot, serverTimestamp, Timestamp, updateDoc } from "firebase/firestore";
@@ -106,6 +106,7 @@ const UserMessages = () => {
 
   return (
     <section className="main-section">
+      <Link to="/messages" className='messages__back'><span></span>Back</Link>
       <div>
         {isMessages
         ?

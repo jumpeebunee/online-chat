@@ -3,7 +3,7 @@ import { FC, useState } from "react"
 import { IPost } from "../types/types"
 import {formatDistanceToNow } from 'date-fns'
 import { useSelector } from 'react-redux';
-import { doc, deleteDoc, updateDoc, arrayUnion, arrayRemove, Timestamp } from "firebase/firestore";
+import { doc, deleteDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { db } from '../firebase';
 import { getCurrentUser } from '../app/feautures/userSlice';
 import LikesBtn from './UI/LikesBtn/LikesBtn';
@@ -19,7 +19,6 @@ const PostItem:FC<PostItemProps> = ({post}) => {
   const currentUser = useSelector(getCurrentUser);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [comment, setComment] = useState('');
 
   const getDate = (date:string) => {
     const validDate = new Date(+date);  

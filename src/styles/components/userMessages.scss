@@ -4,7 +4,7 @@
   gap: 35px;
   padding-bottom: 32px;
   overflow-y: scroll;
-  height: 550px;
+  height: 520px;
 }
 
 .messages__list::-webkit-scrollbar {
@@ -74,11 +74,28 @@
   }
 }
 
+.messages__back {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 14px;
+
+  span {
+    display: block;
+    width: 9px;
+    height: 18px;
+    background-image: url(../../assets/back.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+  }
+}
+
 @media (max-width: 450px) {
   .messages__list {
     gap: 7.78vw;
     padding-bottom: 7.11vw;
-    height: 122.22vw;
+    height: 115.56vw;
   } 
   
   .messages__item {
@@ -114,5 +131,15 @@
     width: 5.78vw;
     height: 4.89vw;
     margin-left: 4vw;
+  }
+
+  .messages__back {
+    gap: 1.56vw;
+    margin-bottom: 3.11vw;
+  
+    span {
+      width: 2vw;
+      height: 4vw;
+    }
   }
 }

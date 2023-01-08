@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage'
 import ProfilePage from '../pages/ProfilePage'
 import MessagePage from '../pages/MessagePage'
 import UserMessages from '../pages/UserMessages'
+import UsersPage from '../pages/UsersPage'
 
 const AppNavigation = () => {
   return (
@@ -16,6 +17,7 @@ const AppNavigation = () => {
       <Route path='/profile' element={<ProfilePage/>}></Route>
       <Route path='/messages' element={<MessagePage/>}></Route>
       <Route path='/message/:id' element={<UserMessages/>}></Route>
+      <Route path='/users' element={<UsersPage/>}></Route>
     </Routes>
   )
 }

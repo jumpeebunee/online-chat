@@ -22,6 +22,11 @@ const AppNav = () => {
       title: 'Messages',
       icon: '../messages.svg'
     },
+    {
+      path: '/users',
+      title: 'Users',
+      icon: '../users.svg'
+    },
   ];
 
   return (
