@@ -1,7 +1,6 @@
 .comment__create {
   display: flex;
   align-items: center;
-  margin-top: 30px;
 }
 
 .comment__create-image {
@@ -28,10 +27,6 @@
 }
 
 @media(max-width: 450px) {
-  .comment__create {
-    margin-top: 6.67vw;
-  }
-  
   .comment__create-image {
     width: 8vw;
     height: 8vw;

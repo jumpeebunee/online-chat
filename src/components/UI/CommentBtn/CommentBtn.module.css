@@ -1,0 +1,26 @@
+.commentBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-weight: 500;
+  color: #A0A0A0;
+  background: #333333;
+  border-radius: 15px;
+  transition: all .4s ease;
+}
+
+.commentBtn:hover {
+  opacity: 0.8;
+}
+
+.commentBtnImg {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background-image: url(../../../assets/comment.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+}

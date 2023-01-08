@@ -84,6 +84,11 @@
   background-color: transparent;
 }
 
+.post-card__btns {
+  display: flex;
+  gap: 10px;
+}
+
 @media (max-width: 450px) {
   .post-card__item {
     padding: 5.56vw 6.67vw;

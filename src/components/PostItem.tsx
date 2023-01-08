@@ -9,6 +9,7 @@ import { getCurrentUser } from '../app/feautures/userSlice';
 import LikesBtn from './UI/LikesBtn/LikesBtn';
 import CommentsList from './CommentsList';
 import CommentCreate from './CommentCreate';
+import { CommentBtn } from './UI/CommentBtn/CommentBtn';
 interface PostItemProps {
   post: IPost,
 }
@@ -88,11 +89,14 @@ const PostItem:FC<PostItemProps> = ({post}) => {
         }
       </div>
       <p className='post-card__body'>{post.body}</p>
-      <LikesBtn
-        handleLike={handleLike}
-        likes={post.likes.length}
-        isActive={post.likes.includes(currentUser.uid)}
-      />
+      <div className='post-card__btns'>
+        <LikesBtn
+          handleLike={handleLike}
+          likes={post.likes.length}
+          isActive={post.likes.includes(currentUser.uid)}
+        />
+        <CommentBtn comments={post.comments.length}/>
+      </div>
       <div className='post-card__comments'>
         <CommentsList post={post}/>
         <CommentCreate post={post}/>
