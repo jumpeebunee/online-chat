@@ -19,14 +19,14 @@ const CommentCreate:FC<CommentCreateProps> = ({post}) => {
 
   const handleSend = async() => {
     setIsError(false);
+    const copyComment = comment;
+    
+    setComment('');
     if (comment.length >= 1) {
       const postsRef = doc(db, "posts", post.id);
-
       await updateDoc(postsRef, {
-        comments: arrayUnion({user: currentUser, body: comment, date: Timestamp.now()})
+        comments: arrayUnion({user: currentUser, body: copyComment, date: Timestamp.now()})
       });
-
-      setComment('');
     } else {
       return;
     }
@@ -41,7 +41,7 @@ const CommentCreate:FC<CommentCreateProps> = ({post}) => {
       <div className='comment__create'>
         <img className='comment__create-image' src={currentUser.photoURL} alt={currentUser.name}/>
         <input onChange={(e) => setComment(e.target.value)} onKeyDown={(e) => handleKey(e)} value={comment} className='input' type="text" placeholder='Write a comment...'/>
-        <button disabled={comment.length <= 1 ? true : false} onClick={handleSend} className='comment__create-btn'></button>
+        <button disabled={comment.length < 1 ? true : false} onClick={handleSend} className='comment__create-btn'></button>
       </div>
       {isError && <div className='error-message'>Something went wrong</div>}
     </div>
