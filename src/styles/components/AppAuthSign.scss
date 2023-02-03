@@ -50,7 +50,7 @@
 .login__label {
   display: block;
   margin-top: 5px;
-  color: #F15857;
+  color: #f15857;
 }
 
 .login__or {
@@ -59,7 +59,6 @@
 }
 
 @media (max-width: 450px) {
-
   .login__logo-icon {
     width: 10.67vw;
     height: 10.89vw;
@@ -68,27 +67,27 @@
   .login__header {
     gap: 3.56vw;
   }
-  
+
   .login__heading {
     font-size: 4.44vw;
     line-height: 5.33vw;
   }
-  
+
   .login__form {
     gap: 3.56vw;
   }
-  
+
   .login__card {
     margin-top: 11.11vw;
     max-width: 71.11vw;
     padding: 7.11vw 5.33vw;
     border-radius: 2.67vw;
   }
-  
+
   .login__label {
     margin-top: 1.11vw;
   }
-  
+
   .login__or {
     font-size: 2.89vw;
   }

@@ -15,7 +15,7 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   span {
@@ -26,22 +26,22 @@
   }
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .profile-page {
     gap: 5.33vw;
   }
-  
+
   .profile-page__img {
     width: 31.56vw;
     height: 31.56vw;
   }
-  
+
   .profile-page__content {
     h2 {
       font-size: 5.33vw;
       line-height: 6.22vw;
     }
-  
+
     span {
       font-size: 3.11vw;
       line-height: 5.11vw;

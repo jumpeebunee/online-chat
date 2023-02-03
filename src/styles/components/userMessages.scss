@@ -8,7 +8,7 @@
 }
 
 .messages__list::-webkit-scrollbar {
-  width: 0px;               
+  width: 0px;
 }
 
 .messages__item {
@@ -37,7 +37,7 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 21px;
-    color: #7190E6; 
+    color: #7190e6;
   }
 
   span {
@@ -70,7 +70,7 @@
   background-color: transparent;
 
   &:disabled {
-    opacity: .2;
+    opacity: 0.2;
   }
 }
 
@@ -96,23 +96,23 @@
     gap: 7.78vw;
     padding-bottom: 7.11vw;
     height: 115.56vw;
-  } 
-  
+  }
+
   .messages__item {
     gap: 3.56vw;
   }
-  
+
   .messages__img {
     width: 12.44vw;
     height: 12.44vw;
   }
-  
+
   .messages__item-header {
     h2 {
       font-size: 4vw;
       line-height: 4.67vw;
     }
-  
+
     span {
       margin-top: 0.89vw;
       margin-left: 1.56vw;
@@ -120,13 +120,12 @@
       line-height: 3.33vw;
     }
   }
-  
+
   .messages__item-description {
     margin-top: 1.11vw;
     font-size: 3.11vw;
   }
 
-  
   .messages__form-btn {
     width: 5.78vw;
     height: 4.89vw;
@@ -136,7 +135,7 @@
   .messages__back {
     gap: 1.56vw;
     margin-bottom: 3.11vw;
-  
+
     span {
       width: 2vw;
       height: 4vw;

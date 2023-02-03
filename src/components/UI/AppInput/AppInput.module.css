@@ -11,7 +11,7 @@
 
 .input_error {
   background-color: rgba(241, 88, 87, 0.4);
-  border: 1px solid #F15857;
+  border: 1px solid #f15857;
 }
 
 @media (max-width: 450px) {

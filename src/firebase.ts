@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: "vk-react-app",
   storageBucket: "vk-react-app.appspot.com",
   messagingSenderId: "6454355285",
-  appId: "1:6454355285:web:919211a4ff3c311ab23bdc"
+  appId: "1:6454355285:web:919211a4ff3c311ab23bdc",
 };
 
 // Initialize Firebase

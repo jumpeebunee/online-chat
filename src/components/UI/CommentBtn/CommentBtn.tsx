@@ -1,12 +1,15 @@
-import { FC } from 'react';
-import cl from './CommentBtn.module.css';
+import { FC } from "react";
+import cl from "./CommentBtn.module.css";
 
 interface CommentBtnProps {
-  comments: number,
+  comments: number;
 }
 
-export const CommentBtn:FC<CommentBtnProps> = ({comments}) => {
+export const CommentBtn: FC<CommentBtnProps> = ({ comments }) => {
   return (
-    <button className={cl.commentBtn}><span className={cl.commentBtnImg}></span>{comments}</button>
-  )
-}
+    <button className={cl.commentBtn}>
+      <span className={cl.commentBtnImg}></span>
+      {comments}
+    </button>
+  );
+};

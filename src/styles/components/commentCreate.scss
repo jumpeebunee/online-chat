@@ -19,20 +19,20 @@
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
-  transition: opacity ease .4s;
+  transition: opacity ease 0.4s;
 }
 
 .comment__create-btn:disabled {
-  opacity: .2;
+  opacity: 0.2;
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .comment__create-image {
     width: 8vw;
     height: 8vw;
     margin-right: 2.22vw;
   }
-  
+
   .comment__create-btn {
     width: 5.78vw;
     height: 4.89vw;

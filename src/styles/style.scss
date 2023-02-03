@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 * {
   font-family: Roboto;
@@ -32,7 +32,7 @@
 
 .input_error {
   background-color: rgba(241, 88, 87, 0.4);
-  border: 1px solid #F15857;
+  border: 1px solid #f15857;
 }
 
 .container {
@@ -59,9 +59,9 @@
   font-size: 14px;
   line-height: 16px;
   color: #222222;
-  background-color: #E1E3E6;
+  background-color: #e1e3e6;
   border-radius: 10px;
-  transition: all ease .4s;
+  transition: all ease 0.4s;
   border: 1px solid transparent;
 
   &:hover {
@@ -88,11 +88,10 @@
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;
-  color: #F15857;
+  color: #f15857;
 }
 
 @media (max-width: 824px) {
-
   .app__content {
     height: 754px;
   }
@@ -104,7 +103,6 @@
 }
 
 @media (max-width: 450px) {
-
   .app__content {
     height: 167.56vw;
   }
@@ -120,31 +118,31 @@
     font-size: 3.56vw;
     border-radius: 1.78vw;
   }
-  
+
   .container {
     max-width: 100%;
     padding-left: 6.67vw;
     padding-right: 6.67vw;
   }
-  
+
   .btn {
     font-size: 3.56vw;
     height: 8vw;
     border-radius: 1.78vw;
   }
-  
+
   .small-btn {
     padding: 1.78vw 3.56vw;
     font-size: 3.11vw;
     line-height: 3.56vw;
     border-radius: 2.22vw;
   }
-  
+
   .card {
     max-width: 146.67vw;
     padding: 5.56vw 6.67vw;
     border-radius: 4.44vw;
-  }  
+  }
 
   .error-message {
     font-size: 3.11vw;

@@ -18,10 +18,10 @@
     background: #424242;
     border-style: solid;
     border-radius: 0px 16px 16px 0px;
-    transition: opacity .4s ease;
+    transition: opacity 0.4s ease;
 
     &:hover {
-      opacity: .8;
+      opacity: 0.8;
     }
 
     span {
@@ -36,20 +36,19 @@
   }
 }
 
-
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .users__search {
     border-radius: 3.56vw;
     padding-left: 3.56vw;
-  
+
     input {
       font-size: 3.56vw;
     }
-  
+
     button {
       padding: 2.22vw 4.89vw;
       border-radius: 0px 3.56vw 3.56vw 0px;
-  
+
       span {
         width: 5.56vw;
         height: 5.56vw;

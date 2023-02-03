@@ -8,13 +8,13 @@
 }
 
 .post-card__list::-webkit-scrollbar {
-  width: 0px;               
+  width: 0px;
 }
 
 @media (max-width: 450px) {
   .post-card__list {
     max-width: 146.67vw;
     gap: 4.44vw;
-    height: 111.11vw; 
+    height: 111.11vw;
   }
 }

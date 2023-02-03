@@ -4,10 +4,10 @@
   gap: 5px;
   padding: 5px 10px;
   font-weight: 500;
-  color: #A0A0A0;
+  color: #a0a0a0;
   background: #333333;
   border-radius: 15px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 
 .likesBtn:hover {
@@ -15,8 +15,8 @@
 }
 
 .likesBtnActive {
-  color: #F85C57;
-  background-color: #42292A;
+  color: #f85c57;
+  background-color: #42292a;
 }
 
 .likesBtnImg {
@@ -27,7 +27,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-color: transparent;
-  transition: background-image .4s ease;
+  transition: background-image 0.4s ease;
 }
 
 .likesBtnImgActive {
@@ -41,7 +41,7 @@
     border-radius: 3.33vw;
     font-size: 3.11vw;
   }
-  
+
   .likesBtnImg {
     width: 3.11vw;
     height: 2.67vw;

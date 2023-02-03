@@ -49,7 +49,7 @@
 .message__name {
   font-weight: 700;
   font-size: 18px;
-  line-height: 21px
+  line-height: 21px;
 }
 
 .message-page__search {
@@ -76,7 +76,6 @@
 }
 
 @media (max-width: 450px) {
-
   .message__list {
     gap: 5.33vw;
   }
@@ -87,7 +86,7 @@
     border-radius: 3.56vw;
     margin-bottom: 3.56vw;
   }
-  
+
   .message-page__search-input {
     font-size: 3.56vw;
   }
@@ -97,11 +96,11 @@
     margin-bottom: 4.44vw;
     padding-bottom: 4.44vw;
   }
-  
+
   .message__item-content_finded {
     gap: 4.44vw;
   }
-  
+
   .message__image {
     max-width: 14.22vw;
     height: 14.22vw;
@@ -109,7 +108,7 @@
 
   .message__about {
     margin-left: 3.56vw;
-  
+
     h4 {
       font-size: 3.11vw;
     }
@@ -118,10 +117,9 @@
       font-size: 3.11vw;
     }
   }
-  
+
   .message__name {
     font-size: 4vw;
-    line-height: 4.67vw
-  } 
-  
+    line-height: 4.67vw;
+  }
 }

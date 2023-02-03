@@ -1,18 +1,24 @@
-import React, { ChangeEvent, FC } from 'react'
-import { IUserData, ILogin } from '../../../types/types'; 
-import cl from './AppInput.module.css';
+import React, { ChangeEvent, FC } from "react";
+import { IUserData, ILogin } from "../../../types/types";
+import cl from "./AppInput.module.css";
 
 interface AppInputProps {
-  title: string,
-  isError: boolean,
-  setValue: Function,
-  value: IUserData | ILogin,
-  currentKey: string,
-  type: string,
+  title: string;
+  isError: boolean;
+  setValue: Function;
+  value: IUserData | ILogin;
+  currentKey: string;
+  type: string;
 }
 
-const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey, type}) => {
-
+const AppInput: FC<AppInputProps> = ({
+  title,
+  isError,
+  setValue,
+  value,
+  currentKey,
+  type,
+}) => {
   function changeData(e: ChangeEvent<HTMLInputElement>) {
     const copyObject = value;
     copyObject[currentKey as keyof typeof value] = e.target.value;
@@ -22,12 +28,12 @@ const AppInput:FC<AppInputProps> = ({title, isError, setValue, value, currentKey
   return (
     <input
       type={type}
-      className={isError ? [cl.input, cl.input_error].join(' ') : cl.input}
+      className={isError ? [cl.input, cl.input_error].join(" ") : cl.input}
       placeholder={title}
       onChange={(e) => changeData(e)}
       autoComplete="true"
     />
-  )
-}
+  );
+};
 
-export default AppInput
+export default AppInput;

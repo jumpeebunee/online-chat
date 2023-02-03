@@ -4,10 +4,10 @@
   gap: 5px;
   padding: 5px 10px;
   font-weight: 500;
-  color: #A0A0A0;
+  color: #a0a0a0;
   background: #333333;
   border-radius: 15px;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 
 .commentBtn:hover {

@@ -20,7 +20,7 @@
 .app-nav__item {
   padding: 8px 10px;
   border-radius: 4px;
-  transition: background ease .4s;
+  transition: background ease 0.4s;
 
   a {
     display: flex;
@@ -49,14 +49,13 @@
 }
 
 @media (max-width: 824px) {
-
   .app-nav {
     width: 0;
     max-width: 0;
   }
 
   .app-nav__content {
-   display: none;
+    display: none;
   }
 
   .app-nav__m-content {
@@ -82,15 +81,15 @@
   .app-nav__m-content {
     height: 10.67vw;
   }
-  
+
   .app-nav__m {
     gap: 4.44vw;
   }
-  
+
   .app-nav__item {
     padding: 1.78vw 2.22vw;
     border-radius: 0.89vw;
-  
+
     a {
       gap: 2.22vw;
       font-size: 3.56vw;

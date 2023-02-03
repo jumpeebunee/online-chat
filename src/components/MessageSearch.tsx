@@ -1,36 +1,36 @@
 import { FC, useState, KeyboardEvent } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { IData } from "../types/types";
 
 interface MessageSearchProps {
-  setErr: Function,
-  setUser: Function,
+  setUser: (arg: IData) => void;
+  setErr: (arg: string) => void;
 }
 
-const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
-
+const MessageSearch: FC<MessageSearchProps> = ({ setUser, setErr }) => {
   const usersRef = collection(db, "users");
 
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
 
   const handleKey = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.code === 'Enter') handleSearch();
-  }
+    if (e.code === "Enter") handleSearch();
+  };
 
   const handleSearch = async () => {
-    setUser('');
-    setErr('');
+    setUser(null);
+    setErr("");
     const q = query(usersRef, where("displayName", "==", userName));
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const findedUser = doc.data();
-        if (findedUser) setUser(findedUser)
+        if (findedUser) setUser(findedUser);
       });
     } catch (error) {
-      setErr(error);
+      setErr(error as string);
     }
-  }
+  };
 
   return (
     <div className="message-page__search">
@@ -40,11 +40,16 @@ const MessageSearch:FC<MessageSearchProps> = ({setUser, setErr}) => {
         onChange={(e) => setUserName(e.target.value)}
         onKeyDown={(e) => handleKey(e)}
         className="message-page__search-input"
-        placeholder='Search users'
-      /> 
-      <button onClick={handleSearch} className="small-btn message-page__search-btn">Find user</button>
+        placeholder="Search users"
+      />
+      <button
+        onClick={handleSearch}
+        className="small-btn message-page__search-btn"
+      >
+        Find user
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default MessageSearch
+export default MessageSearch;
